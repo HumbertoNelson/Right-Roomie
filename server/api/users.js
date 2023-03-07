@@ -1,17 +1,12 @@
 const router = require("express").Router();
 const {
-  models: { User },
+  models: { User, UserPrefernce },
 } = require("../db");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ["id", "username"],
-    });
+    const users = await User.findAll();
     res.json(users);
   } catch (err) {
     next(err);
@@ -23,6 +18,14 @@ router.get("/:id/account", async (req, res, next) => {
     res.send(await User.findByPk(req.params.id));
   } catch (err) {
     console.log("Can not find user", err);
+  }
+})
+
+router.post("/:id/userPreference", async (req, res, next) => {
+  try {
+    const userPref = await UserPrefernce.create(req.body);
+    res.status.json(userPref);
+  } catch (err) {
     next(err);
   }
 });
@@ -60,5 +63,37 @@ router.put("/id/userinfo", async (req, res, next) => {
   } catch (err) {
     console.log("Can not update user information", err);
     next(err);
+  }
+});
+router.put("/:id/userPreference", async (req, res, next) => {
+  try {
+    const userPref = await UserPrefernce.update(req.body, {
+      where: { id: req.params.id },
+    });
+    res.status.json(userPref);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/:id/userCompatibility", async (req, res, next) => {
+  try {
+    const usersCompatibility = await User.findByPk({
+      where: { id: req.params.id },
+    });
+    res.json(usersCompatibility);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete("/:id/account", async (req, res, next) => {
+  try {
+    const destroyUser = await User.findById({
+      where: { id: req.params.id },
+    });
+    res.send(destroyUser.destroy());
+  } catch (error) {
+    next(error);
   }
 });
