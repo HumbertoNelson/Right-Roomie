@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { User },
+  models: { User, UserInfo, UserPreference },
 } = require("../db");
 module.exports = router;
 
@@ -41,6 +41,7 @@ router.post("/:id/userinfo", async (req, res, next) => {
   try {
     const info = await UserInfo.create(req.body);
     info.userId = req.params.id;
+    console.log('info from post', info.userId)
     await info.save();
     res.status(201).send(info);
   } catch (err) {
