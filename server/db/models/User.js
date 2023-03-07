@@ -3,6 +3,8 @@ const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
+const UserInfo = require("./UserInfo");
+const UserPreference = require("./UserPreference");
 
 const SALT_ROUNDS = 5;
 
@@ -76,6 +78,21 @@ User.findByToken = async function (token) {
     error.status = 401;
     throw error;
   }
+};
+User.prototype.getCanidates = async function () {
+  // const userPref = await UserPreference.findOne({
+  //   where: {
+  //     userId: this.id,
+  //   },
+  // });
+  const canidatesInArea = await User.findAll({
+    where: {
+      // id: { [Sequelize.ne]: this.id },
+      city: this.city,
+    },
+  });
+  console.log("these are canidates", canidatesInArea);
+  return canidatesInArea;
 };
 
 /**

@@ -13,7 +13,7 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  const [cody, murphy] = await Promise.all([
+  const [cody, mark] = await Promise.all([
     User.create({
       username: "cody",
       password: "123",
@@ -23,15 +23,15 @@ async function seed() {
       phone_number: "5556667777",
     }),
     User.create({
-      username: "murphy",
+      username: "mark",
       password: "123",
-      fullName: "Murphy Johnson",
+      fullName: "Mark Johnson",
       city: "Brooklyn",
       email: "murphy@email.com",
       phone_number: "1112223333",
     }),
   ]);
-  const [codyInfo, codyPref] = await Promise.all([
+  const [codyInfo, codyPref, markInfo, markPref] = await Promise.all([
     UserInfo.create({
       cleanliness: 2,
       hasPets: "No",
@@ -65,13 +65,46 @@ async function seed() {
       religion: "N/A",
       userId: cody.id,
     }),
+    UserInfo.create({
+      cleanliness: 2,
+      hasPets: "No",
+      smoking: "yes",
+      age: 27,
+      drugs: "No",
+      gender: "Male",
+      workSchedule: "Nights",
+      socialLevel: "5",
+      noiseLevel: 4,
+      overnightGuests: "Yes",
+      sexualOrientation: "Straight",
+      politicalViews: "N/A",
+      religion: "N/A",
+      userId: mark.id,
+    }),
+    UserPreference.create({
+      cleanliness: 3,
+      allowPets: "Yes",
+      smoking: "Yes",
+      minAge: 21,
+      maxAge: 32,
+      drugs: "No",
+      gender: "Male",
+      workSchedule: "Nights",
+      socialLevel: "5",
+      noiseLevel: 4,
+      overnightGuests: "Yes",
+      sexualOrientation: "Straight",
+      politicalViews: "N/A",
+      religion: "N/A",
+      userId: mark.id,
+    }),
   ]);
 
   console.log(`seeded successfully`);
   return {
     users: {
       cody,
-      murphy,
+      mark,
     },
     userPreferences: {
       codyPref,
