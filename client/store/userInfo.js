@@ -12,6 +12,7 @@ export const _addToUserInfo = (newUserInfo) => {
 export const addToUserInfo = (id) => {
   return async (dispatch) => {
     const { data: newUserInfo } = await axios.post(`/api/users/${id}/userinfo`);
+    console.log("this is new user info", newUserInfo);
     dispatch(_addToUserInfo(newUserInfo));
   };
 };
