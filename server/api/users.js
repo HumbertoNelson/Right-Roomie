@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const {
-  models: { User },
+  models: { User, UserInfo, UserPreference },
 } = require("../db");
 module.exports = router;
 
+//api/users/
 router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
