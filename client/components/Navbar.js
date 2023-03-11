@@ -5,7 +5,7 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>FS-App-Template</h1>
+    <h1>Right Roomie</h1>
     <nav>
       {isLoggedIn ? (
         <div>
