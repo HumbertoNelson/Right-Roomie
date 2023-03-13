@@ -7,12 +7,7 @@ module.exports = router;
 //api/users/
 router.get("/", async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ["id", "username"],
-    });
+    const users = await User.findAll();
     res.json(users);
   } catch (err) {
     next(err);
@@ -38,10 +33,9 @@ router.put("/:id/account", async (req, res, next) => {
   }
 });
 
-router.post("/:id/userinfo", async (req, res, next) => {
+router.post("/userinfo", async (req, res, next) => {
   try {
     const info = await UserInfo.create(req.body);
-    info.userId = req.params.id;
     await info.save();
     res.status(201).send(info);
   } catch (err) {

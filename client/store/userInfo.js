@@ -9,18 +9,21 @@ export const _addToUserInfo = (newUserInfo) => {
   };
 };
 
-export const addToUserInfo = (id) => {
+export const addToUserInfo = (values) => {
   return async (dispatch) => {
-    const { data: newUserInfo } = await axios.post(`/api/users/${id}/userinfo`);
+    const { data: newUserInfo } = await axios.post(
+      "/api/users/userinfo",
+      values
+    );
     console.log("this is new user info", newUserInfo);
     dispatch(_addToUserInfo(newUserInfo));
   };
 };
 
-const userInfo = (state = [], action) => {
+const userInfo = (state = {}, action) => {
   switch (action.type) {
     case ADD_USERINFO:
-      return [...action.newUserInfo];
+      return action.newUserInfo;
     default:
       return state;
   }
