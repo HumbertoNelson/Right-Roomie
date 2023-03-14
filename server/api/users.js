@@ -34,12 +34,25 @@ router.post("/:id/userPreference", async (req, res, next) => {
 
 router.put("/:id/account", async (req, res, next) => {
   try {
-    console.log('body', req.body)
+    console.log("body", req.body);
     const user = await User.findByPk(req.params.id);
     await user.update(req.body);
     res.send(user);
   } catch (err) {
     console.log("Can not update user", err);
+    next(err);
+  }
+});
+router.get("/userinfo/:id", async (req, res, next) => {
+  try {
+    const info = await UserInfo.findAll({
+      where: {
+        userId: req.params.id,
+      },
+    });
+    res.status(201).send(info);
+  } catch (err) {
+    console.log("Can not fetch user information");
     next(err);
   }
 });
@@ -56,7 +69,7 @@ router.post("/userinfo", async (req, res, next) => {
   }
 });
 
-router.put("/:id/userinfo", async (req, res, next) => {
+router.put("/userinfo/:id", async (req, res, next) => {
   try {
     const info = await UserInfo.findAll({
       where: {
