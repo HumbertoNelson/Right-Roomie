@@ -7,11 +7,13 @@ const TOKEN = 'token'
  * ACTION TYPES
  */
 const SET_AUTH = 'SET_AUTH'
+const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT'
 
 /**
  * ACTION CREATORS
  */
 const setAuth = auth => ({type: SET_AUTH, auth})
+const _updateAccount = account => ({type: UPDATE_ACCOUNT, account})
 
 /**
  * THUNK CREATORS
@@ -57,13 +59,28 @@ export const logout = () => {
   }
 }
 
+export const updateAccount = (account) => {
+  try {
+    return (dispatch) => {
+      axios
+        .put(`/api/users/${account.id}/account`)
+        .then((res) => {
+          dispatch(_updateAccount(res.data));
+        })
+  }} catch (err) {
+    console.log('Error updating account', err);
+  }
+}
+
 /**
  * REDUCER
  */
 export default function(state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
-      return action.auth
+      return action.auth;
+    case UPDATE_ACCOUNT:
+      return action.account;
     default:
       return state
   }
