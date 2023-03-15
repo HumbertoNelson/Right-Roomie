@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { logout } from "../store";
 
 const { id } = useParams;
+
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <h1>FS-App-Template</h1>
@@ -17,6 +18,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <Link to="/userInfo">User Info Form</Link>
         </div>
       ) : (
         <div>

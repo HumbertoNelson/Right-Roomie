@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+
 import {
   withRouter,
   Route,
@@ -12,6 +13,8 @@ import Home from "./components/Home";
 import { me } from "./store";
 import userPreference from "./components/userPreference";
 import userCompatibility from "./components/userCompatibility";
+import UserInfo from "./components/UserInfoForm";
+
 
 /**
  * COMPONENT
@@ -36,7 +39,10 @@ class Routes extends Component {
               path={`/${id}/userPreference/userCompatibility`}
               component={userCompatibility}
             />
-            <Redirect to={`/${id}/userPreference/userCompatibility`} />;
+            <Redirect to={`/${id}/userPreference/userCompatibility`} />
+            <Route path="/userInfo" component={UserInfo} />
+            <Redirect to="/home" />
+
           </Switch>
         ) : (
           <Switch>

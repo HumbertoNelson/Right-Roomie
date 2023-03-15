@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const {
-  models: { User, UserPreference },
+  models: { User, UserInfo, UserPreference },
 } = require("../db");
 module.exports = router;
 
+//api/users/
 router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll();
@@ -41,10 +42,9 @@ router.put("/:id/account", async (req, res, next) => {
   }
 });
 
-router.post("/:id/userinfo", async (req, res, next) => {
+router.post("/userinfo", async (req, res, next) => {
   try {
     const info = await UserInfo.create(req.body);
-    info.userId = req.params.id;
     await info.save();
     res.status(201).send(info);
   } catch (err) {
