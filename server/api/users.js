@@ -19,6 +19,15 @@ router.get("/:id/account", async (req, res, next) => {
     res.send(await User.findByPk(req.params.id));
   } catch (err) {
     console.log("Can not find user", err);
+  }
+});
+
+router.post("/:id/userPreference", async (req, res, next) => {
+  try {
+    const userPref = await UserPreference.create(req.body);
+    await userPref.save();
+    res.send(userPref);
+  } catch (err) {
     next(err);
   }
 });
@@ -44,7 +53,7 @@ router.post("/userinfo", async (req, res, next) => {
   }
 });
 
-router.put("/id/userinfo", async (req, res, next) => {
+router.put("/:id/userinfo", async (req, res, next) => {
   try {
     const info = await UserInfo.findAll({
       where: {
@@ -55,5 +64,37 @@ router.put("/id/userinfo", async (req, res, next) => {
   } catch (err) {
     console.log("Can not update user information", err);
     next(err);
+  }
+});
+router.put("/:id/userPreference", async (req, res, next) => {
+  try {
+    const userPref = await UserPrefernce.update(req.body, {
+      where: { id: req.params.id },
+    });
+    res.status.json(userPref);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/:id/userCompatibility", async (req, res, next) => {
+  try {
+    const usersCompatibility = await User.findByPk({
+      where: { id: req.params.id },
+    });
+    res.json(usersCompatibility);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete("/:id/account", async (req, res, next) => {
+  try {
+    const destroyUser = await User.findById({
+      where: { id: req.params.id },
+    });
+    res.send(destroyUser.destroy());
+  } catch (error) {
+    next(error);
   }
 });
