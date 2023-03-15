@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { User, UserPrefernce },
+  models: { User, UserPreference },
 } = require("../db");
 module.exports = router;
 
@@ -19,12 +19,13 @@ router.get("/:id/account", async (req, res, next) => {
   } catch (err) {
     console.log("Can not find user", err);
   }
-})
+});
 
 router.post("/:id/userPreference", async (req, res, next) => {
   try {
-    const userPref = await UserPrefernce.create(req.body);
-    res.status.json(userPref);
+    const userPref = await UserPreference.create(req.body);
+    await userPref.save();
+    res.send(userPref);
   } catch (err) {
     next(err);
   }
@@ -52,7 +53,7 @@ router.post("/:id/userinfo", async (req, res, next) => {
   }
 });
 
-router.put("/id/userinfo", async (req, res, next) => {
+router.put("/:id/userinfo", async (req, res, next) => {
   try {
     const info = await UserInfo.findAll({
       where: {
