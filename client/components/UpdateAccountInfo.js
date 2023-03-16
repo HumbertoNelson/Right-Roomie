@@ -1,19 +1,27 @@
 import React from "react";
-import { useRef, useState, useEffect } from "react";
+import axios from 'axios';
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAccount } from "../store";
 import { useParams } from "react-router-dom";
 
 function UpdateAccountInfo (props) {
     const { auth } = useSelector((state) => state);
+    const [account, setAccountInfo] = useState({});
     const dispatch = useDispatch();
 
-    const [account, setAccountInfo] = useState({
-        fullName: '',
-        city: '',
-        email: '',
-        phone_number: ''
-    });
+    useEffect(() => {
+        const getUserAccountInfo = async (id) => {
+            try {
+                const response = await axios.get(`/api/users/${id}/account`);
+                const result = response.data;
+                setAccountInfo(result);
+            } catch(err) {
+                console.error(err);
+            }
+        };
+        getUserAccountInfo(auth.id);
+    }, [])
 
     const handleChange = (event) => {
         setAccountInfo({...account, [event.target.name]: event.target.value});
@@ -21,6 +29,7 @@ function UpdateAccountInfo (props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log('account', account)
         dispatch(updateAccount(account));
     };
 

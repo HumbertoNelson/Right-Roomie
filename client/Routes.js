@@ -16,13 +16,13 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn, id} = this.props
-
+    console.log('logged', isLoggedIn)
     return (
       <div>
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path="/users/:id/account" component={UpdateAccountInfo} />
+            <Route path='/users/:id/account' component={UpdateAccountInfo} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -45,7 +45,7 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
-    id: state.auth.id
+    id: state.auth.id,
   }
 }
 
