@@ -10,11 +10,12 @@ import {
 } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import { me } from "./store";
+import UserInfo from "./components/UserInfoForm";
+import UpdateAccountInfo from './components/UpdateAccountInfo';
+import {me} from './store'
 import userPreference from "./components/userPreference";
 import userCompatibility from "./components/userCompatibility";
 import UserInfo from "./components/UserInfoForm";
-
 
 /**
  * COMPONENT
@@ -41,6 +42,7 @@ class Routes extends Component {
             />
             <Redirect to={`/${id}/userPreference/userCompatibility`} />
             <Route path="/userInfo" component={UserInfo} />
+            <Route path="/users/:id/account" component={UpdateAccountInfo} />
             <Redirect to="/home" />
 
           </Switch>

@@ -34,8 +34,10 @@ router.post("/:id/userPreference", async (req, res, next) => {
 
 router.put("/:id/account", async (req, res, next) => {
   try {
+    console.log('body', req.body)
     const user = await User.findByPk(req.params.id);
-    res.send(await user.update(req.body));
+    await user.update(req.body);
+    res.send(user);
   } catch (err) {
     console.log("Can not update user", err);
     next(err);
@@ -45,6 +47,7 @@ router.put("/:id/account", async (req, res, next) => {
 router.post("/userinfo", async (req, res, next) => {
   try {
     const info = await UserInfo.create(req.body);
+    info.userId = req.params.id;
     await info.save();
     res.status(201).send(info);
   } catch (err) {

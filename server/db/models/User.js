@@ -5,8 +5,9 @@ const bcrypt = require("bcrypt");
 const axios = require("axios");
 const UserInfo = require("./UserInfo");
 const UserPreference = require("./UserPreference");
-require("dotenv").config();
+require('dotenv').config();
 const JWT = process.env.JWT;
+
 const SALT_ROUNDS = 5;
 
 const User = db.define("user", {
