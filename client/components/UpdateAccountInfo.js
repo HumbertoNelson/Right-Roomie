@@ -32,7 +32,7 @@ const UpdateAccountInfo = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         dispatch(updateAccount(account));
-        history.push(`/users/${account.id}`);
+        // history.push(`/users/${account.id}`);
     };
 
     return(
