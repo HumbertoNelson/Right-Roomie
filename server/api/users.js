@@ -25,6 +25,7 @@ router.get("/:id/account", async (req, res, next) => {
 
 router.put("/:id/account", async (req, res, next) => {
   try {
+    console.log('body', req.body)
     const user = await User.findByPk(req.params.id);
     await user.update(req.body);
     res.send(user);
