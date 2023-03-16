@@ -12,15 +12,11 @@ const UpdateAccountInfo = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-
-const goBack = () => {
-    history(-1)
-}
     useEffect(() => {
         const getUserAccountInfo = async (id) => {
             try {
                 const response = await axios.get(`/api/users/${id}/account`);
-                const result = response.data;
+                const result = await response.data;
                 setAccountInfo(result);
             } catch(err) {
                 console.error(err);
@@ -36,7 +32,7 @@ const goBack = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         dispatch(updateAccount(account));
-        goBack();
+        history.push(`/users/${account.id}`);
     };
 
     return(
