@@ -59,17 +59,17 @@ export const logout = () => {
   }
 }
 
-export const updateAccount = (account) => {
+export const updateAccount = (accountUpdate) => {
   try {
-    return (dispatch) => {
-      axios
-        .put(`/api/users/${account.id}/account`)
-        .then((res) => {
-          dispatch(_updateAccount(res.data));
-        })
-  }} catch (err) {
+    return async (dispatch) => {
+      const { data: account } = await axios.put(
+        `/api/users/${accountUpdate.id}/account`,
+        accountUpdate
+      );
+      dispatch(_updateAccount(account));
+    }} catch (err) {
     console.log('Error updating account', err);
-  }
+  };
 }
 
 /**

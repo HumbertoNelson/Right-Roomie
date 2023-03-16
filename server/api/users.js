@@ -25,8 +25,9 @@ router.get("/:id/account", async (req, res, next) => {
 
 router.put("/:id/account", async (req, res, next) => {
   try {
-    await user.update(req.body);
+    console.log('body', req.body)
     const user = await User.findByPk(req.params.id);
+    await user.update(req.body);
     res.send(user[0]);
   } catch (err) {
     console.log("Can not update user", err);
