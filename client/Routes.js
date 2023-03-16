@@ -1,15 +1,27 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+
+import {
+  withRouter,
+  Route,
+  Switch,
+  Redirect,
+  useParams,
+} from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import UserInfo from "./components/UserInfoForm";
 import UpdateAccountInfo from './components/UpdateAccountInfo';
 import {me} from './store'
+import userPreference from "./components/userPreference";
+import userCompatibility from "./components/userCompatibility";
+import UserInfo from "./components/UserInfoForm";
 
 /**
  * COMPONENT
  */
+const { id } = useParams;
+
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
@@ -23,9 +35,16 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+            <Route path={`/${id}/userPreference`} component={userPreference} />
+            <Route
+              path={`/${id}/userPreference/userCompatibility`}
+              component={userCompatibility}
+            />
+            <Redirect to={`/${id}/userPreference/userCompatibility`} />
             <Route path="/userInfo" component={UserInfo} />
             <Route path="/users/:id/account" component={UpdateAccountInfo} />
             <Redirect to="/home" />
+
           </Switch>
         ) : (
           <Switch>
