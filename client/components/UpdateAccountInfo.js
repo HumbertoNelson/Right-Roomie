@@ -3,13 +3,19 @@ import axios from 'axios';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAccount } from "../store";
-import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-function UpdateAccountInfo (props) {
+
+const UpdateAccountInfo = (props) => {
     const { auth } = useSelector((state) => state);
     const [account, setAccountInfo] = useState({});
     const dispatch = useDispatch();
+    const history = useHistory();
 
+
+const goBack = () => {
+    history(-1)
+}
     useEffect(() => {
         const getUserAccountInfo = async (id) => {
             try {
@@ -29,8 +35,8 @@ function UpdateAccountInfo (props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('account', account)
         dispatch(updateAccount(account));
+        goBack();
     };
 
     return(
@@ -61,7 +67,7 @@ function UpdateAccountInfo (props) {
                     onChange={handleChange}
                     value={account.phone_number}
                 />
-                <button type='Submit'>Update</button>                               
+                <button type='submit'>Update</button>                               
             </form>
         </div>
     );
