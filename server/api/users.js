@@ -76,7 +76,10 @@ router.put("/userinfo/:id", async (req, res, next) => {
         userId: req.params.id,
       },
     });
-    res.send(await info.update(req.body));
+    console.log("this is info", info);
+    console.log("this is req.body", req.body);
+    await info[0].update(req.body);
+    res.send(info);
   } catch (err) {
     console.log("Can not update user information", err);
     next(err);

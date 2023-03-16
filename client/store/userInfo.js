@@ -39,12 +39,14 @@ export const addToUserInfo = (values) => {
     dispatch(_addToUserInfo(newUserInfo));
   };
 };
-export const updateUserInfo = (newValues) => {
+export const updateUserInfo = (newValues, id) => {
   return async (dispatch) => {
+    console.log("these are new values", newValues);
     const { data: updatedInfo } = await axios.put(
-      `/api/users/userinfo/${newValues.userId}`,
+      `/api/users/userinfo/${id}`,
       newValues
     );
+
     dispatch(_updateUserInfo(updatedInfo));
   };
 };

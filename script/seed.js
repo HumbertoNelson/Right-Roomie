@@ -44,8 +44,8 @@ async function seed() {
       noiseLevel: 4,
       overnightGuests: "Yes",
       sexualOrientation: "Straight",
-      politicalViews: "N/A",
-      religion: "N/A",
+      politicalViews: "Democrat",
+      religion: "Non-Religious",
       userId: cody.id,
     }),
     UserPreference.create({
@@ -61,8 +61,8 @@ async function seed() {
       noiseLevel: 4,
       overnightGuests: "Yes",
       sexualOrientation: "Straight",
-      politicalViews: "N/A",
-      religion: "N/A",
+      politicalViews: "Democrat",
+      religion: "Non-Religious",
       userId: cody.id,
     }),
     UserInfo.create({
