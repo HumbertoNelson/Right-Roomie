@@ -60,8 +60,10 @@ export const logout = () => {
 }
 
 export const updateAccount = (accountUpdate) => {
+  console.log('here')
   try {
     return async (dispatch) => {
+      console.log('dispatch', dispatch)
       const { data: account } = await axios.put(
         `/api/users/${accountUpdate.id}/account`,
         accountUpdate
