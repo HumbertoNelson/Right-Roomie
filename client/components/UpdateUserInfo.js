@@ -1,42 +1,46 @@
 import React from "react";
+import axios from "axios";
 import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToUserInfo } from "../store";
+import { updateUserInfo, fetchUserInfo } from "../store";
 import { useParams } from "react-router-dom";
 
-const UserInfo = (props) => {
-  const { auth } = useSelector((state) => state);
+const UpdateUserInfo = (props) => {
+  const { auth, userInfo } = useSelector((state) => state);
+  const [values, setValues] = useState({});
   const dispatch = useDispatch();
 
-  const [values, setValues] = useState({
-    cleanliness: 0,
-    hasPets: "",
-    smoking: "",
-    age: "",
-    drugs: "",
-    gender: "",
-    sexualOrientation: "",
-    workSchedule: "",
-    socialLevel: 0,
-    noiseLevel: 0,
-    overnightGuests: "",
-    politicalViews: "",
-    religion: "",
-    userId: auth.id,
-  });
+  console.log("this is values", values);
+  useEffect(() => {
+    // dispatch(fetchUserInfo(auth.id));
+    const fetchUserInfo = async (id) => {
+      try {
+        const response = await axios.get(`/api/users/userinfo/${id}`);
+        const result = await response.data;
+        setValues(result[0]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserInfo(auth.id);
+  }, []);
+
+  console.log("this is userinfo", userInfo);
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
+    console.log("handle change", { [event.target.name]: event.target.value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(addToUserInfo(values));
+    console.log("these are values", values);
+    dispatch(updateUserInfo(values, auth.id));
   };
 
   return (
     <div>
-      <h1>Please Answer The Following Questions About Yourself</h1>
+      <h1>Update Your Information</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="cleanliness">How clean are you?</label>
         <select
@@ -57,6 +61,7 @@ const UserInfo = (props) => {
           type="radio"
           name="hasPets"
           value={"Yes"}
+          checked={values.hasPets === "Yes"}
         />
         Yes
         <input
@@ -64,6 +69,7 @@ const UserInfo = (props) => {
           type="radio"
           name="hasPets"
           value={"No"}
+          checked={values.hasPets === "No"}
         />
         No
         <label htmlFor="smoking">Do you smoke?</label>
@@ -72,6 +78,7 @@ const UserInfo = (props) => {
           type="radio"
           name="smoking"
           value={"Yes"}
+          checked={values.smoking === "yes"}
         />
         Yes
         <input
@@ -79,19 +86,32 @@ const UserInfo = (props) => {
           type="radio"
           name="smoking"
           value={"No"}
+          checked={values.smoking === "No"}
         />
         No
         <label htmlFor="age">How old are you?</label>
-        <input onChange={handleChange} type="text" name="age" />
+        <input
+          onChange={handleChange}
+          type="text"
+          name="age"
+          value={values.age}
+        />
         <label htmlFor="smoking">Do you participate in drug use?</label>
         <input
           onChange={handleChange}
           type="radio"
           name="drugs"
           value={"Yes"}
+          checked={values.drugs === "Yes"}
         />
         Yes
-        <input onChange={handleChange} type="radio" name="drugs" value={"No"} />
+        <input
+          onChange={handleChange}
+          type="radio"
+          name="drugs"
+          value={"No"}
+          checked={values.drugs === "No"}
+        />
         No
         <label htmlFor="gender">What gender do you identify with?</label>
         <select onChange={handleChange} name="gender" value={values.gender}>
@@ -162,6 +182,7 @@ const UserInfo = (props) => {
           type="radio"
           name="overnightGuests"
           value={"Yes"}
+          checked={values.overnightGuests === "Yes"}
         />
         Yes
         <input
@@ -169,6 +190,7 @@ const UserInfo = (props) => {
           type="radio"
           name="overnightGuests"
           value={"No"}
+          checked={values.overnightGuests === "No"}
         />
         No
         <input
@@ -214,4 +236,4 @@ const UserInfo = (props) => {
   );
 };
 
-export default UserInfo;
+export default UpdateUserInfo;
