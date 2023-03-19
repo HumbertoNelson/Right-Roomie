@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-
 import {
   withRouter,
   Route,
@@ -8,11 +7,12 @@ import {
   Redirect,
   useParams,
 } from "react-router-dom";
-import { Login, Signup } from "./components/AuthForm";
+import { AuthForm, Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import UpdateUserInfo from "./components/UpdateUserInfo";
 import UserInfo from "./components/UserInfoForm";
 import UpdateAccountInfo from "./components/UpdateAccountInfo";
+import Root from './components/Root';
 import { me } from "./store";
 import userPreference from "./components/userPreference";
 import userCompatibility from "./components/userCompatibility";
@@ -60,11 +60,12 @@ class Routes extends Component {
               component={UpdateUserPreferences}
             />
             {/* <Redirect exact to={`/${id}/userPreference/userCompatibility`} /> */}
+            <Route path="/users/:id/account" component={UpdateAccountInfo} />
             <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route path="/" exact component={Root} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
