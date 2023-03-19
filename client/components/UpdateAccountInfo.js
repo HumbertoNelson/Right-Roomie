@@ -3,14 +3,12 @@ import axios from 'axios';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAccount } from "../store";
-import { useHistory } from "react-router-dom";
 
 
 const UpdateAccountInfo = (props) => {
     const { auth } = useSelector((state) => state);
     const [account, setAccountInfo] = useState({});
     const dispatch = useDispatch();
-    const history = useHistory();
 
     useEffect(() => {
         const getUserAccountInfo = async (id) => {
@@ -32,7 +30,6 @@ const UpdateAccountInfo = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         dispatch(updateAccount(account));
-        // history.push(`/users/${account.id}`);
     };
 
     return(
