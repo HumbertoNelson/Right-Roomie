@@ -52,7 +52,6 @@ export const Root = () => {
         <div>
             <div className="hero-image">
                 <div className="hero-text">
-                    <h1>Right Roomie</h1>
                     <h1>Find the perfect roommate</h1>
                 </div>
             </div>
