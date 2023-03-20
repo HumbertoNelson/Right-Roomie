@@ -21,6 +21,7 @@ const Navbar = ({ handleClick, isLoggedIn, id }) => (
             <Link to={`users/${id}/account`}>Account Information</Link>
           </p>
           <Link to="/updateUserInfo"> Update User Info Form</Link>
+          <Link to="/updateUserPreferences"> Update User Preferences</Link>
         </div>
       ) : (
         <div>

@@ -31,6 +31,19 @@ router.post("/:id/userPreference", async (req, res, next) => {
     next(err);
   }
 });
+router.get("/:id/userPreference", async (req, res, next) => {
+  try {
+    const info = await UserPreference.findAll({
+      where: {
+        userId: req.params.id,
+      },
+    });
+    res.status(201).send(info);
+  } catch (err) {
+    console.log("Can not fetch user preferences");
+    next(err);
+  }
+});
 
 router.put("/:id/account", async (req, res, next) => {
   try {
@@ -87,10 +100,10 @@ router.put("/userinfo/:id", async (req, res, next) => {
 });
 router.put("/:id/userPreference", async (req, res, next) => {
   try {
-    const userPref = await UserPrefernce.update(req.body, {
+    const userPref = await UserPreference.update(req.body, {
       where: { id: req.params.id },
     });
-    res.status.json(userPref);
+    res.send(userPref);
   } catch (err) {
     next(err);
   }

@@ -16,7 +16,7 @@ import UpdateAccountInfo from "./components/UpdateAccountInfo";
 import { me } from "./store";
 import userPreference from "./components/userPreference";
 import userCompatibility from "./components/userCompatibility";
-import UserInfo from "./components/UserInfoForm";
+import UpdateUserPreferences from "./components/UpdateUserPreference";
 
 /**
  * COMPONENT
@@ -36,15 +36,30 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path={`/${id}/userPreference`} component={userPreference} />
             <Route
+              exact
+              path={`/${id}/userPreference`}
+              component={userPreference}
+            />
+            <Route
+              exact
               path={`/${id}/userPreference/userCompatibility`}
               component={userCompatibility}
             />
-            <Redirect to={`/${id}/userPreference/userCompatibility`} />
-            <Route path="/userInfo" component={UserInfo} />
-            <Route path="/users/:id/account" component={UpdateAccountInfo} />
-            <Route path="/updateUserInfo" component={UpdateUserInfo} />
+
+            <Route exact path="/userInfo" component={UserInfo} />
+            <Route
+              exact
+              path="/users/:id/account"
+              component={UpdateAccountInfo}
+            />
+            <Route exact path="/updateUserInfo" component={UpdateUserInfo} />
+            <Route
+              exact
+              path="/updateUserPreferences"
+              component={UpdateUserPreferences}
+            />
+            {/* <Redirect exact to={`/${id}/userPreference/userCompatibility`} /> */}
             <Redirect to="/home" />
           </Switch>
         ) : (

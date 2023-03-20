@@ -1,9 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUserInfo, fetchUserInfo } from "../store";
-import { useParams } from "react-router-dom";
+import { updateUserInfo } from "../store";
 
 const UpdateUserInfo = (props) => {
   const { auth, userInfo } = useSelector((state) => state);
