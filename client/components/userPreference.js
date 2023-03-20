@@ -58,7 +58,7 @@ const userPreference = () => {
       <form onSubmit={getPreference}>
         <div className="slidecontainer">
           <h3 id="cleanlinessRange">
-            Cleanliness:{preference.cleanliness.toString()}
+            Cleanliness level you expect: {preference.cleanliness.toString()}
           </h3>
           <input
             name="cleanliness"
@@ -136,7 +136,7 @@ const userPreference = () => {
         <br></br>
         <div>
           <label htmlFor="drugs">
-            <h3>Recreational drug use okay?</h3>
+            <h3>Is recreational drug use okay?</h3>
           </label>
           <input onChange={onChange} type="radio" name="drugs" value={"Yes"} />
           Yes
@@ -152,16 +152,16 @@ const userPreference = () => {
             onChange={onChange}
             type="radio"
             name="gender"
-            value={(preference.gender = "cisMale")}
+            value={(preference.gender = "Male")}
           />
-          Cis-Male
+          Male
           <input
             onChange={onChange}
             type="radio"
             name="gender"
-            value={(preference.gender = "cisFemale")}
+            value={(preference.gender = "Female")}
           />
-          Cis-Female
+          Female
           <input
             onChange={onChange}
             type="radio"
@@ -176,11 +176,18 @@ const userPreference = () => {
             value={(preference.gender = "Non-binary")}
           />
           Non-binary
+          <input
+            onChange={onChange}
+            type="radio"
+            name="gender"
+            value={(preference.gender = "No Preference")}
+          />
+          No Preference
         </div>
         <br></br>
         <div>
           <label htmlFor="workSchedule">
-            <h3>What's your work schedule?</h3>
+            <h3>What's your prefered work schedule in a roomate?</h3>
           </label>
           <input
             onChange={onChange}
@@ -203,11 +210,19 @@ const userPreference = () => {
             value={"Nights"}
           />
           Nights
+          <input
+            onChange={onChange}
+            type="radio"
+            name="workSchedule"
+            value={"No Preference"}
+          />
+          No Preference
         </div>
         <br></br>
         <div className="slidecontainer">
           <h3 id="socialLevel">
-            What your social level:{preference.socialLevel.toString()}
+            Social level you're comfortable with:{" "}
+            {preference.socialLevel.toString()}
           </h3>
           <input
             name="socialLevel"
@@ -223,7 +238,8 @@ const userPreference = () => {
         <br></br>
         <div className="slidecontainer">
           <h3 id="noiseLevel">
-            What your noise level:{preference.noiseLevel.toString()}
+            Noise level you're comfortable with:{" "}
+            {preference.noiseLevel.toString()}
           </h3>
           <input
             name="noiseLevel"
@@ -259,7 +275,7 @@ const userPreference = () => {
         <br></br>
         <div>
           <label htmlFor="sexualOrientation">
-            <h3>Roommate sexual orientation a preference?</h3>
+            <h3>Do you care about your roomate's sexual orientation?</h3>
           </label>
           <input
             onChange={onChange}
@@ -272,21 +288,21 @@ const userPreference = () => {
             onChange={onChange}
             type="radio"
             name="sexualOrientation"
-            value={"LGBTQ"}
+            value={"LGBTQIA+"}
           />
-          LGBTQ
+          LGBTQIA+
           <input
             onChange={onChange}
             type="radio"
             name="sexualOrientation"
-            value={"Prefer not to say"}
+            value={"No Preference"}
           />
-          Prefer not to say
+          No Preference
         </div>
         <br></br>
         <div>
           <label htmlFor="politicalViews">
-            <h3>Roommate's poliitcal view?</h3>
+            <h3>Do you care about your roommate's political views?</h3>
           </label>
           <input
             onChange={onChange}
@@ -302,11 +318,18 @@ const userPreference = () => {
             value={"Republican"}
           />
           Republican
+          <input
+            onChange={onChange}
+            type="radio"
+            name="politicalViews"
+            value={"No Preference"}
+          />
+          No Preference
         </div>
         <br></br>
         <div>
           <label htmlFor="religion">
-            <h3>Care about your roommate's religion?</h3>
+            <h3>Do you care about your roommate's religion?</h3>
           </label>
           <input
             onChange={onChange}
@@ -361,16 +384,9 @@ const userPreference = () => {
             onChange={onChange}
             type="radio"
             name="religion"
-            value={"Something Not Listed Above"}
+            value={"No Preference"}
           />
-          Something Not Listed Above
-          <input
-            onChange={onChange}
-            type="radio"
-            name="religion"
-            value={"Prefer not to respond"}
-          />
-          Prefer not to respond
+          No Preference
         </div>
         <button type="submit">Submit</button>
       </form>

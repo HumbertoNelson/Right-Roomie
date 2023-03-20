@@ -137,7 +137,7 @@ const UpdateUserPreferences = (props) => {
         <br></br>
         <div>
           <label htmlFor="drugs">
-            <h3>Recreational drug use okay?</h3>
+            <h3>Is recreational drug use okay?</h3>
           </label>
           <input
             onChange={onChange}
@@ -165,18 +165,18 @@ const UpdateUserPreferences = (props) => {
             onChange={onChange}
             type="radio"
             name="gender"
-            value={"cisMale"}
-            checked={values.gender === "cisMale"}
+            value={"Male"}
+            checked={values.gender === "Male"}
           />
-          Cis-Male
+          Male
           <input
             onChange={onChange}
             type="radio"
             name="gender"
             value={"cisFemale"}
-            checked={values.gender === "cisFemale"}
+            checked={values.gender === "Female"}
           />
-          Cis-Female
+          Female
           <input
             onChange={onChange}
             type="radio"
@@ -311,10 +311,10 @@ const UpdateUserPreferences = (props) => {
             onChange={onChange}
             type="radio"
             name="sexualOrientation"
-            value={"LGBTQ"}
-            checked={values.sexualOrientation === "LGBTQ"}
+            value={"LGBTQIA+"}
+            checked={values.sexualOrientation === "LGBTQIA+"}
           />
-          LGBTQ
+          LGBTQIA+
           <input
             onChange={onChange}
             type="radio"
@@ -327,7 +327,7 @@ const UpdateUserPreferences = (props) => {
         <br></br>
         <div>
           <label htmlFor="politicalViews">
-            <h3>Do you care about your roommate's political view?</h3>
+            <h3>Do you care about your roommate's political views?</h3>
           </label>
           <input
             onChange={onChange}
