@@ -12,24 +12,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { teal } from '@mui/material/colors';
+import { positions } from '@mui/system';
+import Diversity1Icon from '@mui/icons-material/Diversity1';
 
-const pages = ['Login', 'Signup'];
-const settings = ['Account', 'User Information', 'Roommate Preferences', 'Logout'];
 
 function Navbar({ handleClick, isLoggedIn, id }) {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -37,25 +28,40 @@ function Navbar({ handleClick, isLoggedIn, id }) {
   };
 
   return (
-    <AppBar style={{background: '#66bb6a'}} position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <div>
         {isLoggedIn ? (
-          <div>
+          <AppBar style={{background: '#66bb6a'}} position="static">
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+            <Diversity1Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <Typography
+            variant="h6"
+            noWrap
+            component="p"
+            sx={{
+              mr: 10,
+              display: { xs: 'none', md: 'flex' },
+              fontWeight: 700,
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            Right Roomie
+          </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleOpenUserMenu}
               color="inherit"
             >
-              <MenuIcon />
+              <MenuIcon sx={{position: 'right'}}/>
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={anchorElNav}
+              anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -65,8 +71,8 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 vertical: 'top',
                 horizontal: 'left',
               }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
@@ -88,72 +94,90 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 </MenuItem>
               </Menu>
             </Box>
+            <Diversity1Icon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            component="p"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
+            Right Roomie
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box justifyContent="right" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Link to="/home"><Button
-                onClick={handleCloseNavMenu}
+                onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Home
               </Button></Link>
               <Link to={`users/${id}/account`}><Button
-                onClick={handleCloseNavMenu}
+                onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Account
               </Button></Link>
               <Link to="/updateUserInfo"><Button
-                onClick={handleCloseNavMenu}
+                onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 User Information
               </Button></Link>
               <Link to='/home'><Button
-                onClick={handleCloseNavMenu}
+                onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Roommate Preferences
               </Button></Link>
               <a href="#" onClick={handleClick}><Button
-                onClick={handleCloseNavMenu}
+                onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Logout
               </Button></a>
           </Box>
-          </div>                     
+          </Toolbar>
+      </Container>
+    </AppBar>                     
           ) : (
-            <div>
+            <AppBar style={{background: '#66bb6a'}} position="static">
+            <Container maxWidth="xl">
+              <Toolbar disableGutters>
+              <Diversity1Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              <Typography
+              variant="h6"
+              noWrap
+              component="p"
+              sx={{
+                mr: 10,
+                display: { xs: 'none', md: 'flex' },
+                fontWeight: 700,
+                color: 'inherit',
+                textDecoration: 'none', 
+              }}
+              >
+                Right Roomie
+              </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleOpenUserMenu}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={anchorElNav}
+              anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -163,20 +187,21 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 vertical: 'top',
                 horizontal: 'left',
               }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem onClick={handleCloseUserMenu}>
                 <Link to="/login"><Typography textAlign="center">Login</Typography></Link>
                 </MenuItem>
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem onClick={handleCloseUserMenu}>
                 <Link to="/signup"><Typography textAlign="center">Signup</Typography></Link>
                 </MenuItem>
             </Menu>
             </Box>
+            <Diversity1Icon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -186,33 +211,31 @@ function Navbar({ handleClick, isLoggedIn, id }) {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
-          >
+          > Right Roomie
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box justifyContent="right" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Link to="/login"><Button
-                onClick={handleCloseNavMenu}
+                onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Login
               </Button></Link>
               <Link to="/signup"><Button
-                onClick={handleCloseNavMenu}
+                onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Signup
               </Button></Link>
           </Box>
-          </div>
-          )}
-        </Toolbar>
+          </Toolbar>
       </Container>
     </AppBar>
+          )}
+</div>
   );
 }
 
