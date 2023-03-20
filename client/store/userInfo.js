@@ -18,7 +18,7 @@ export const _fetchUserInfo = (info) => {
 };
 export const _updateUserInfo = (updatedInfo) => {
   return {
-    type: FETCH_USERINFO,
+    type: UPDATE_USERINFO,
     updatedInfo,
   };
 };

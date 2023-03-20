@@ -1,38 +1,35 @@
-import React, { useState } from "react";
-import { fetchUserPreference } from "../store/userPreference";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import axios from "axios";
+import { useRef, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { updateUserPreferences } from "../store/userPreference";
 
-import { useParams, Redirect } from "react-router-dom";
-
-const userPreference = () => {
+const UpdateUserPreferences = (props) => {
   var slider = document.getElementById("myRange");
   var output = document.getElementById("cleanlinessRange");
-  const dispatch = useDispatch();
-  const { id } = useParams;
   const { auth } = useSelector((state) => state);
+  const [values, setValues] = useState({});
+  const dispatch = useDispatch();
 
-  const [preference, setPreference] = useState({
-    cleanliness: 0,
-    allowPets: "",
-    smoking: "",
-    minAge: 0,
-    maxAge: 0,
-    drugs: "",
-    gender: "",
-    workSchedule: "",
-    socialLevel: 0,
-    noiseLevel: 0,
-    overnightGuests: "",
-    sexualOrientation: "",
-    politicalViews: "",
-    religion: "",
-    userId: auth.id,
-  });
+  console.log("this is values", values);
+  useEffect(() => {
+    const fetchUserPref = async (id) => {
+      try {
+        const response = await axios.get(`/api/users/${id}/userPreference`);
+        const result = await response.data;
+        setValues(result[0]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserPref(auth.id);
+  }, []);
 
   const onChange = (ev) => {
     let onChange = {
-      setPreference: setPreference({
-        ...preference,
+      setValues: setValues({
+        ...values,
         [ev.target.name]: ev.target.value,
       }),
       slider: (slider = function (ev) {
@@ -40,32 +37,27 @@ const userPreference = () => {
       }),
     };
   };
-  const getPreference = async (ev) => {
-    ev.preventDefault();
-    dispatch(fetchUserPreference(preference, id));
-    //setPreference(preference);
-    //Taking 'preference' from useState
-    //and adding the answers from the form and updating the values in preference
+
+  const getPreference = async (event) => {
+    event.preventDefault();
+    console.log("these are values", values);
+    dispatch(updateUserPreferences(values, auth.id));
   };
 
   return (
     <div>
-      <h2>
-        Hi {auth.fullName}!<br></br>
-        <br></br>
-      </h2>
-      <h3>Please fill out the form for your preferences in a roommate:</h3>
+      <h1>Update Your Preferences About Your Roommate</h1>
       <form onSubmit={getPreference}>
         <div className="slidecontainer">
           <h3 id="cleanlinessRange">
-            Cleanliness level you expect: {preference.cleanliness.toString()}
+            Cleanliness level you expect: {values.cleanliness}
           </h3>
           <input
             name="cleanliness"
             type="range"
             min="0"
             max="5"
-            value={preference.cleanliness}
+            value={values.cleanliness}
             className="slider"
             id="myRange"
             onChange={onChange}
@@ -81,6 +73,7 @@ const userPreference = () => {
             type="radio"
             name="allowPets"
             value={"Yes"}
+            checked={values.allowPets === "Yes"}
           />
           Yes
           <input
@@ -88,6 +81,7 @@ const userPreference = () => {
             type="radio"
             name="allowPets"
             value={"No"}
+            checked={values.allowPets === "No"}
           />
           No
         </div>
@@ -101,33 +95,40 @@ const userPreference = () => {
             type="radio"
             name="smoking"
             value={"Yes"}
+            checked={values.smoking === "Yes"}
           />
           Yes
-          <input onChange={onChange} type="radio" name="smoking" value={"No"} />
+          <input
+            onChange={onChange}
+            type="radio"
+            name="smoking"
+            value={"No"}
+            checked={values.smoking === "No"}
+          />
           No
         </div>
         <br></br>
         <div className="slidecontainer">
-          <h3 id="minAge">Minimum Age:{preference.minAge}</h3>
+          <h3 id="minAge">Minimum Age: {values.minAge}</h3>
           <input
             name="minAge"
             type="range"
             min="18"
             max="100"
-            value={preference.minAge}
+            value={values.minAge}
             className="slider"
             id="myRange"
             onChange={onChange}
           ></input>
         </div>
         <div className="slidecontainer">
-          <h3 id="maxAge">Maximum Age:{preference.maxAge.toString()}</h3>
+          <h3 id="maxAge">Maximum Age: {values.maxAge}</h3>
           <input
             name="maxAge"
             type="range"
             min=""
             max="100"
-            value={preference.maxAge}
+            value={values.maxAge}
             className="slider"
             id="myRange"
             onChange={onChange}
@@ -138,9 +139,21 @@ const userPreference = () => {
           <label htmlFor="drugs">
             <h3>Is recreational drug use okay?</h3>
           </label>
-          <input onChange={onChange} type="radio" name="drugs" value={"Yes"} />
+          <input
+            onChange={onChange}
+            type="radio"
+            name="drugs"
+            value={"Yes"}
+            checked={values.drugs === "Yes"}
+          />
           Yes
-          <input onChange={onChange} type="radio" name="drugs" value={"No"} />
+          <input
+            onChange={onChange}
+            type="radio"
+            name="drugs"
+            value={"No"}
+            checked={values.drugs === "No"}
+          />
           No
         </div>
         <br></br>
@@ -152,35 +165,40 @@ const userPreference = () => {
             onChange={onChange}
             type="radio"
             name="gender"
-            value={(preference.gender = "Male")}
+            value={"Male"}
+            checked={values.gender === "Male"}
           />
           Male
           <input
             onChange={onChange}
             type="radio"
             name="gender"
-            value={(preference.gender = "Female")}
+            value={"cisFemale"}
+            checked={values.gender === "Female"}
           />
           Female
           <input
             onChange={onChange}
             type="radio"
             name="gender"
-            value={(preference.gender = "Transgender")}
+            value={"Transgender"}
+            checked={values.gender === "Transgender"}
           />
           Transgender
           <input
             onChange={onChange}
             type="radio"
             name="gender"
-            value={(preference.gender = "Non-binary")}
+            value={"Non-binary"}
+            checked={values.gender === "Non-binary"}
           />
           Non-binary
           <input
             onChange={onChange}
             type="radio"
             name="gender"
-            value={(preference.gender = "No Preference")}
+            value={"No Preference"}
+            checked={values.gender === "No Preference"}
           />
           No Preference
         </div>
@@ -194,6 +212,7 @@ const userPreference = () => {
             type="radio"
             name="workSchedule"
             value={"Weekdays"}
+            checked={values.workSchedule === "Weekdays"}
           />
           Weekdays
           <input
@@ -201,6 +220,7 @@ const userPreference = () => {
             type="radio"
             name="workSchedule"
             value={"Weekends"}
+            checked={values.workSchedule === "Weekends"}
           />
           Weekends
           <input
@@ -208,6 +228,7 @@ const userPreference = () => {
             type="radio"
             name="workSchedule"
             value={"Nights"}
+            checked={values.workSchedule === "Nights"}
           />
           Nights
           <input
@@ -215,21 +236,21 @@ const userPreference = () => {
             type="radio"
             name="workSchedule"
             value={"No Preference"}
+            checked={values.workSchedule === "No Preference"}
           />
           No Preference
         </div>
         <br></br>
         <div className="slidecontainer">
           <h3 id="socialLevel">
-            Social level you're comfortable with:{" "}
-            {preference.socialLevel.toString()}
+            Social level you're comfortable with: {values.socialLevel}
           </h3>
           <input
             name="socialLevel"
             type="range"
             min="0"
             max="5"
-            value={preference.socialLevel}
+            value={values.socialLevel}
             className="slider"
             id="myRange"
             onChange={onChange}
@@ -238,15 +259,14 @@ const userPreference = () => {
         <br></br>
         <div className="slidecontainer">
           <h3 id="noiseLevel">
-            Noise level you're comfortable with:{" "}
-            {preference.noiseLevel.toString()}
+            Noise level you're comfortable with: {values.noiseLevel}
           </h3>
           <input
             name="noiseLevel"
             type="range"
             min="0"
             max="5"
-            value={preference.noiseLevel}
+            value={values.noiseLevel}
             className="slider"
             id="myRange"
             onChange={onChange}
@@ -262,6 +282,7 @@ const userPreference = () => {
             type="radio"
             name="overnightGuests"
             value={"Yes"}
+            checked={values.overnightGuests === "Yes"}
           />
           Yes
           <input
@@ -269,6 +290,7 @@ const userPreference = () => {
             type="radio"
             name="overnightGuests"
             value={"No"}
+            checked={values.overnightGuests === "No"}
           />
           No
         </div>
@@ -282,13 +304,15 @@ const userPreference = () => {
             type="radio"
             name="sexualOrientation"
             value={"Straight"}
+            checked={values.sexualOrientation === "Straight"}
           />
-          Striaght
+          Straight
           <input
             onChange={onChange}
             type="radio"
             name="sexualOrientation"
             value={"LGBTQIA+"}
+            checked={values.sexualOrientation === "LGBTQIA+"}
           />
           LGBTQIA+
           <input
@@ -296,6 +320,7 @@ const userPreference = () => {
             type="radio"
             name="sexualOrientation"
             value={"No Preference"}
+            checked={values.sexualOrientation === "No Preference"}
           />
           No Preference
         </div>
@@ -309,6 +334,7 @@ const userPreference = () => {
             type="radio"
             name="politicalViews"
             value={"Democrat"}
+            checked={values.politicalViews === "Democrat"}
           />
           Democrat
           <input
@@ -316,6 +342,7 @@ const userPreference = () => {
             type="radio"
             name="politicalViews"
             value={"Republican"}
+            checked={values.politicalViews === "Republican"}
           />
           Republican
           <input
@@ -323,6 +350,7 @@ const userPreference = () => {
             type="radio"
             name="politicalViews"
             value={"No Preference"}
+            checked={values.politicalViews === "No Preference"}
           />
           No Preference
         </div>
@@ -336,6 +364,7 @@ const userPreference = () => {
             type="radio"
             name="religion"
             value={"Christian"}
+            checked={values.religion === "Christian"}
           />
           Christian
           <input
@@ -343,6 +372,7 @@ const userPreference = () => {
             type="radio"
             name="religion"
             value={"Jewish"}
+            checked={values.religion === "Jewish"}
           />
           Jewish
           <input
@@ -350,6 +380,7 @@ const userPreference = () => {
             type="radio"
             name="religion"
             value={"Muslim"}
+            checked={values.religion === "Muslim"}
           />
           Muslim
           <input
@@ -357,6 +388,7 @@ const userPreference = () => {
             type="radio"
             name="religion"
             value={"Buddhist"}
+            checked={values.religion === "Buddhist"}
           />
           Buddhist
           <input
@@ -364,6 +396,7 @@ const userPreference = () => {
             type="radio"
             name="religion"
             value={"Hindu"}
+            checked={values.religion === "Hindu"}
           />
           Hindu
           <input
@@ -371,6 +404,7 @@ const userPreference = () => {
             type="radio"
             name="religion"
             value={"Atheist"}
+            checked={values.religion === "Atheist"}
           />
           Atheist
           <input
@@ -378,6 +412,7 @@ const userPreference = () => {
             type="radio"
             name="religion"
             value={"Non-Religious"}
+            checked={values.religion === "Non-Religious"}
           />
           Non-Religious
           <input
@@ -385,6 +420,7 @@ const userPreference = () => {
             type="radio"
             name="religion"
             value={"No Preference"}
+            checked={values.religion === "No Preference"}
           />
           No Preference
         </div>
@@ -394,4 +430,4 @@ const userPreference = () => {
   );
 };
 
-export default userPreference;
+export default UpdateUserPreferences;
