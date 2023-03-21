@@ -29,7 +29,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
 
   return (
     <div>
-        {isLoggedIn ? (
+        {Object.keys(isLoggedIn).length > 0 ? (
           <AppBar style={{background: '#66bb6a'}} position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
@@ -78,9 +78,9 @@ function Navbar({ handleClick, isLoggedIn, id }) {
               }}
             > 
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to='/home'><Typography textAlign="center">Home</Typography></Link>
+                  <Link to='/home'><Typography textAlign="center">Dashboard</Typography></Link>
                 </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
+                {/* <MenuItem onClick={handleCloseUserMenu}>
                   <Link to={`users/${id}/account`}><Typography textAlign="center">Account</Typography></Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
@@ -88,7 +88,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Link to='/home'><Typography textAlign="center">Roommate Preferences</Typography></Link>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem onClick={handleCloseUserMenu}>
                   <a href="#" onClick={handleClick}><Typography textAlign="center">Logout</Typography></a>
                 </MenuItem>
@@ -115,9 +115,9 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                Home
+                Dashboard
               </Button></Link>
-              <Link to={`users/${id}/account`}><Button
+              {/* <Link to={`users/${id}/account`}><Button
                 onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
@@ -134,7 +134,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Roommate Preferences
-              </Button></Link>
+              </Button></Link> */}
               <a href="#" onClick={handleClick}><Button
                 onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -275,7 +275,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
  */
 const mapState = (state) => {
   return {
-    isLoggedIn: !!state.auth.id,
+    isLoggedIn: state.auth,
     id: state.auth.id,
   };
 };

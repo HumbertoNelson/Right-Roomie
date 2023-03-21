@@ -40,14 +40,15 @@ export const authenticateLogin = (username, password, method) => async dispatch 
   }
 }
 
-export const authenticateSignup = (username, password, fullName, city, email, phone_number, method) => async dispatch => {
+export const authenticateSignup = (username, password, fullName, city, email, phone_number, imgUrl, method) => async dispatch => {
   try {
-    const res = await axios.post(`/auth/${method}`, {username, password, fullName, city, email, phone_number})
+    const res = await axios.post(`/auth/${method}`, {username, password, fullName, city, email, phone_number, imgUrl})
     window.localStorage.setItem(TOKEN, res.data.token)
-    dispatch(me())
+    // dispatch(me())
+    dispatch(setAuth(res.data))
   } catch (authError) {
     return dispatch(setAuth({error: authError}))
-  }
+  } finally {history.push('/userInfo')}
 }
 
 export const logout = () => {

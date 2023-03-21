@@ -39,26 +39,37 @@ const UpdateAccountInfo = (props) => {
                 <label htmlFor="fullName">Full Name</label>
                 <input
                     name="fullName"
+                    type="text"
                     onChange={handleChange}
                     value={account.fullName}
                 />
                 <label htmlFor="city">City</label>
                 <input
                     name="city"
+                    type="text"
                     onChange={handleChange}
                     value={account.city}
                 />
                 <label htmlFor="email">Email</label>
                 <input
                     name="email"
+                    type="text"
                     onChange={handleChange}
                     value={account.email}
                 />
                 <label htmlFor="phone_number">Phone Number</label>
                 <input
                     name="phone_number"
+                    type="text"
                     onChange={handleChange}
                     value={account.phone_number}
+                />
+                <label htmlFor="imgUrl">Picture</label>
+                <input
+                    name="imgUrl"
+                    type="file"
+                    onChange={handleChange}
+                    value={account.imgUrl}
                 />
                 <button type='submit'>Update</button>                               
             </form>

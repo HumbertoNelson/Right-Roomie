@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { fetchUserPreference } from "../store/userPreference";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useParams, Redirect } from "react-router-dom";
+
 
 const userPreference = () => {
   var slider = document.getElementById("myRange");
