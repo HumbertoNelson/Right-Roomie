@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { fetchUserPreference } from "../store/userPreference";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Redirect } from "react-router-dom";
 
+import { Link, useParams, Redirect } from "react-router-dom";
 
 const userPreference = () => {
   var slider = document.getElementById("myRange");
   var output = document.getElementById("cleanlinessRange");
   const dispatch = useDispatch();
-  const { id } = useParams;
+  const { id } = useParams();
   const { auth } = useSelector((state) => state);
 
   const [preference, setPreference] = useState({
@@ -388,7 +388,9 @@ const userPreference = () => {
           />
           No Preference
         </div>
-        <button type="submit">Submit</button>
+        <Link to={`/${id}/userPreference/userCompatibility`}>
+          <button type="submit">Submit</button>
+        </Link>
       </form>
     </div>
   );

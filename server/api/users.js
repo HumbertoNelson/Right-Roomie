@@ -7,8 +7,11 @@ module.exports = router;
 //api/users/
 router.get("/", async (req, res, next) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({
+      include: UserInfo,
+    });
     res.json(users);
+    console.log(users);
   } catch (err) {
     next(err);
   }

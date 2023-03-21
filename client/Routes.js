@@ -12,7 +12,7 @@ import Home from "./components/Home";
 import UpdateUserInfo from "./components/UpdateUserInfo";
 import UserInfo from "./components/UserInfoForm";
 import UpdateAccountInfo from "./components/UpdateAccountInfo";
-import Root from './components/Root';
+import Root from "./components/Root";
 import { me } from "./store";
 import userPreference from "./components/userPreference";
 import userCompatibility from "./components/userCompatibility";
@@ -20,8 +20,8 @@ import UpdateUserPreferences from "./components/UpdateUserPreference";
 
 /**
  * COMPONENT
- */
-const { id } = useParams;
+//  */
+// const { id } = useParams;
 
 class Routes extends Component {
   componentDidMount() {
@@ -34,22 +34,14 @@ class Routes extends Component {
       <div>
         {Object.keys(isLoggedIn).length > 0 ? (
           <Switch>
+            {/* <Redirect to="/home" /> */}
             <Route path="/home" component={Home} />
-            <Route path='/userPreference' component={userPreference} />
-            <Route
-              exact
-              path={`/${id}/userPreference`}
-              component={userPreference}
-            />
-            <Route
-              exact
-              path={`/${id}/userPreference/userCompatibility`}
-              component={userCompatibility}
-            />
+            <Route path="/userPreference" component={userPreference} />
             <Route path="/userInfo" component={UserInfo} />
             <Route path="/account" component={UpdateAccountInfo} />
             <Route path="/updateUserInfo" component={UpdateUserInfo} />
             <Redirect to="/home" />
+            <Route exact path="/userInfo" component={UserInfo} />
           </Switch>
         ) : (
           <Switch>
