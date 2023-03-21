@@ -3,9 +3,15 @@ import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import auth from "./auth";
 import userPreferenceReducer from "./userPreference";
+import users from "./users";
 import userInfo from "./userInfo";
 
-const reducer = combineReducers({ auth, userPreferenceReducer,  userInfo });
+const reducer = combineReducers({
+  auth,
+  userPreferenceReducer,
+  userInfo,
+  users,
+});
 
 const middleware = applyMiddleware(
   thunkMiddleware,
@@ -17,4 +23,3 @@ export default store;
 export * from "./auth";
 // export * from "./userPreference";
 export * from "./userInfo";
-
