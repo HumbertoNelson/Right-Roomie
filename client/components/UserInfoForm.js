@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToUserInfo } from "../store";
 import { useParams } from "react-router-dom";
+import history from '../history';
 
 const UserInfo = (props) => {
   let slider = document.getElementById("myRange");
@@ -37,6 +38,7 @@ const UserInfo = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     dispatch(addToUserInfo(values));
+    history.push('/userPreference')
   };
 
   return (

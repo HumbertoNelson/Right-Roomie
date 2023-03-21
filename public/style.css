@@ -1,5 +1,6 @@
-body {
+body, html {
   font-family: sans-serif;
+  height: 100%;
 }
 
 a {
@@ -48,4 +49,42 @@ form div {
   border-radius: 50%;
   background: #04AA6D;
   cursor: pointer;
+}
+
+/* .hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("roommateSmall.jpg");
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+} */
+
+.hero-text {
+  text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em gray;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.hero-image {
+  background-image: url("roommatesReading.jpg");
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.testBox {
+  text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em gray;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
 }

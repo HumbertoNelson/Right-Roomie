@@ -16,8 +16,6 @@ const AuthForm = props => {
             <small>Username</small>
           </label>
           <input name="username" type="text" />
-        </div>
-        <div>
           <label htmlFor="password">
             <small>Password</small>
           </label>
@@ -40,7 +38,11 @@ const AuthForm = props => {
         <label htmlFor="phone_number">
           <small>Phone Number</small>
         </label>
-        <input name="phone_number" type="text" /> 
+        <input name="phone_number" type="text" />
+        <label htmlFor="imgUrl">
+          <small>Picture</small>
+        </label>
+        <input name="imgUrl" type="text" />  
         </div>                       
         ) : <span></span>}
         <div>
@@ -86,7 +88,8 @@ const mapDispatchSignup = dispatch => {
       const city = evt.target.city.value
       const email = evt.target.email.value
       const phone_number = evt.target.phone_number.value
-      dispatch(authenticateSignup(username, password, fullName, city, email, phone_number, formName))
+      const imgUrl = evt.target.imgUrl.value
+      dispatch(authenticateSignup(username, password, fullName, city, email, phone_number, imgUrl, formName))
     }
   }
 }
