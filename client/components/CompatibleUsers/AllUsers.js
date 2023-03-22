@@ -2,6 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import UserCard from "./UserCard";
+import {
+  Grid,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+} from "@mui/material";
 
 const AllUsers = () => {
   const usersArr = [
@@ -27,17 +37,36 @@ const AllUsers = () => {
     },
   ];
   return (
-    <div>
-      <ul>
-        {usersArr.map((user) => {
-          return (
-            <div key={user.id}>
-              <UserCard user={user} />
-            </div>
-          );
-        })}
-      </ul>
-    </div>
+    <Grid container spacing={2}>
+      {usersArr.map((user) => (
+        <Grid item key={user.id} xs={3} md={2}>
+          <Card sx={{ maxWidth: 345 }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="140"
+                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Lizard
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Lizards are a widespread group of squamate reptiles, with over
+                  6,000 species, ranging across all continents except Antarctica
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button size="small" color="primary">
+                Share
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 
