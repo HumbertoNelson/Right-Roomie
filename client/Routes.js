@@ -18,6 +18,7 @@ import { me } from "./store";
 import userPreference from "./components/userPreference";
 import userCompatibility from "./components/userCompatibility";
 import UpdateUserPreferences from "./components/UpdateUserPreference";
+import AllUsers from "./components/CompatibleUsers/AllUsers";
 
 /**
  * COMPONENT
@@ -37,6 +38,7 @@ class Routes extends Component {
           <Switch>
             {/* <Redirect to="/home" /> */}
             <Route path="/home" component={Home} />
+            <Route path="/allUsers" component={AllUsers} />
             <Route path="/userPreference" component={userPreference} />
             <Route path="/userInfo" component={UserInfo} />
             <Route path="/account" component={UpdateAccountInfo} />

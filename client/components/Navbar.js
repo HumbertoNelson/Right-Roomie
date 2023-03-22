@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { position } from "@mui/system";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
 
 function Navbar({ handleClick, isLoggedIn, id }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -39,7 +39,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
               <Typography
                 variant="h4"
                 noWrap
-                component="p" 
+                component="p"
                 sx={{
                   mr: 10,
                   display: { xs: "none", md: "flex" },
@@ -50,7 +50,10 @@ function Navbar({ handleClick, isLoggedIn, id }) {
               >
                 Right Roomie
               </Typography>
-              <Box justifyContent="left" sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <Box
+                justifyContent="left"
+                sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+              >
                 <IconButton
                   size="large"
                   aria-label="account of current user"
@@ -121,6 +124,25 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                     Dashboard
                   </Button>
                 </Link>
+                <Link to="/allUsers">Matches</Link>
+                {/* <Link to={`users/${id}/account`}><Button
+                onClick={handleCloseUserMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Account
+              </Button></Link>
+              <Link to="/updateUserInfo"><Button
+                onClick={handleCloseUserMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                User Information
+              </Button></Link>
+              <Link to='/home'><Button
+                onClick={handleCloseUserMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Roommate Preferences
+              </Button></Link> */}
                 <a href="#" onClick={handleClick}>
                   <Button
                     onClick={handleCloseUserMenu}
@@ -243,7 +265,6 @@ function Navbar({ handleClick, isLoggedIn, id }) {
     </div>
   );
 }
-
 
 /**
  * CONTAINER
