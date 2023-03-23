@@ -3,24 +3,53 @@ import {connect} from 'react-redux'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
+import Avatar from '@mui/material/Avatar';
+import CardMedia from '@mui/material/CardMedia';
 import { Link } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid'; 
+import Box from '@mui/material/Box';
 
 /**
  * COMPONENT
  */
 export const Home = props => {
-  console.log('props', props)
-  const {fullName} = props
+  const {fullName, pic} = props
 
   return (
-      <div>
-        <h3>Welcome, {fullName}!</h3>
-        <h3>User Dashboard</h3>
+    <div>
+      <Box className='testBox' sx={{mt: 5, justifyContent: "center", textAlign: "center", p: 3, backgroundColor: 'success.main', border: "1px solid black", color: 'white', height: 400}}>
+        <h1>User Dashboard</h1>
+        <h2>Welcome, {fullName}!</h2>
+            <Grid container align='center'>
+              <Grid item xs={12}>
+                <Avatar
+                alt={fullName}
+                src={pic}
+                sx={{ width: 250, height: 250}}
+                />
+              </Grid>
+            </Grid>
+          </Box>
           <div className='card'>
-            <Grid container spacing={2} align='center'>
+            <Grid container spacing={2} align='center' sx={{mt: 2}}>
+              {/* <Grid item xs={12}>
+              <Card sx={{ width: '75%', height: '100%', position: "center" }}>
+                <CardContent>
+                  <CardHeader
+                  title={<Typography variant="h5" component="div">
+                  <p>User Dashboard</p>
+                  </Typography>}
+                  />
+                  <Avatar
+                    alt={fullName}
+                    src={pic}
+                    sx={{ width: 300, height: 'auto' }}
+                  />
+                  </CardContent>
+              </Card> 
+              </Grid> */}
               <Grid item xs={6}>
                 <Card sx={{ width: '95%', height: '100%', position: "center" }} elevation={10} >
                   <CardContent>
@@ -30,9 +59,9 @@ export const Home = props => {
                       </Typography>}
                     />
                     <Typography sx={{ mt: 1.5 }} color="text.secondary" component={'span'}>
-                      <p><Button variant="outlined" color="success"><Link to="/account">Profile</Link></Button></p>
-                      <p><Button variant="outlined" color="success"><Link to="/updateUserInfo">User Info Form</Link></Button></p>
-                      <p><Button variant="outlined" color="success"><Link to="/updateUserPreference">Roommate Preferences Form</Link></Button></p>
+                      <p><Link to="/account"><Button variant="contained" color="success">Profile</Button></Link></p>
+                      <p><Link to="/updateUserInfo"><Button variant="contained" color="success">User Info Form</Button></Link></p>
+                      <p><Link to="/updateUserPreference"><Button variant="contained" color="success">Roommate Preferences Form</Button></Link></p>
                     </Typography>
                   </CardContent>
                 </Card>
@@ -46,14 +75,14 @@ export const Home = props => {
                       </Typography>}
                     />
                     <Typography sx={{ mt: 1.5 }} color="text.secondary" component={'span'}>
-                      <p><Button variant="outlined" color="success"><Link to="/userCompatibility">View your matches</Link></Button></p>
+                      <p><Link to="/userCompatibility"><Button variant="contained" color="success">View your matches</Button></Link></p>
                     </Typography>
                   </CardContent>
                 </Card>
               </Grid>
             </Grid>
-          </div>       
-      </div>
+          </div>
+    </div>       
   )
 }
 
@@ -63,6 +92,7 @@ export const Home = props => {
 const mapState = state => {
   return {
     fullName: state.auth.fullName,
+    pic: state.auth.imgUrl,
   }
 }
 

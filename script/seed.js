@@ -21,7 +21,7 @@ async function seed() {
       city: "Brooklyn",
       email: "cody@email.com",
       phone_number: "5556667777",
-      imgUrl: "https://images.unsplash.com/photo-1576558656222-ba66febe3dec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+      imgUrl: "https://images.unsplash.com/photo-1531750026848-8ada78f641c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
     }),
     User.create({
       username: "mark",

@@ -28,7 +28,6 @@ function Navbar({ handleClick, isLoggedIn, id }) {
   };
 
   return (
-    console.log(isLoggedIn.imgUrl),
     <div>
       {Object.keys(isLoggedIn).length > 0 ? (
         <AppBar style={{ background: "#66bb6a" }} position="static">
@@ -38,9 +37,9 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
               />
               <Typography
-                variant="h6"
+                variant="h4"
                 noWrap
-                component="p"
+                component="p" 
                 sx={{
                   mr: 10,
                   display: { xs: "none", md: "flex" },
@@ -85,15 +84,6 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                       <Typography textAlign="center">Dashboard</Typography>
                     </Link>
                   </MenuItem>
-                  {/* <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to={`users/${id}/account`}><Typography textAlign="center">Account</Typography></Link>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to={`users/userinfo/${id}`}><Typography textAlign="center">User Information</Typography></Link>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to='/home'><Typography textAlign="center">Roommate Preferences</Typography></Link>
-                </MenuItem> */}
                   <MenuItem onClick={handleCloseUserMenu}>
                     <a href="#" onClick={handleClick}>
                       <Typography textAlign="center">Logout</Typography>
@@ -105,7 +95,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
               />
               <Typography
-                variant="h5"
+                variant="h3"
                 noWrap
                 component="p"
                 sx={{
@@ -131,24 +121,6 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                     Dashboard
                   </Button>
                 </Link>
-                {/* <Link to={`users/${id}/account`}><Button
-                onClick={handleCloseUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Account
-              </Button></Link>
-              <Link to="/updateUserInfo"><Button
-                onClick={handleCloseUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                User Information
-              </Button></Link>
-              <Link to='/home'><Button
-                onClick={handleCloseUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Roommate Preferences
-              </Button></Link> */}
                 <a href="#" onClick={handleClick}>
                   <Button
                     onClick={handleCloseUserMenu}
