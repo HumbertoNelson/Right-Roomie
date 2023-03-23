@@ -1,21 +1,4 @@
-# FS-App-Template
-
-## Setup
-
-- just clone this
-- rm -rf .git
-- git init
-- git add .
-- git commit -m 'first commit'
-- set up origin on github
-
-
-## Customize
-
-Now that you've got the code, follow these steps to get acclimated:
-
-* Update project name and description in `package.json`, this is your database
-
+# Right Roomie
 
 ## Start
 
