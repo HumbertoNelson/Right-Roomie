@@ -88,3 +88,11 @@ form div {
 .block {
   display: block;
 }
+
+.no-bullets {
+  list-style-type: none; 
+}
+.link {
+  text-decoration: none;
+  color: black;
+}
