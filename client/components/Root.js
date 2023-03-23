@@ -75,7 +75,7 @@ export const Root = () => {
                 </Box>
                 <Box className='testBox' sx={{textAlign: "center", p: 8, backgroundColor: 'success.light', border: "1px solid black", color: 'white'}}><h1>What Right Roomie users are saying:</h1></Box>
                 <div className='card'>
-                    <Card sx={{ width: '50%' }} elevation={20} >
+                    <Card sx={{ width: '50%' }}>
                         <CardContent>
                             <CardHeader
                                 avatar={<Avatar alt="John" src="john.jpg" />}

@@ -388,7 +388,7 @@ const userPreference = () => {
           />
           No Preference
         </div>
-        <Link to={`/${id}/userPreference/userCompatibility`}>
+        <Link to='/home'>
           <button type="submit">Submit</button>
         </Link>
       </form>
