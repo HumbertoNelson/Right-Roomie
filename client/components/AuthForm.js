@@ -2,10 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {authenticateLogin, authenticateSignup} from '../store';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 
@@ -16,107 +14,81 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      {name === 'signup' ? (
-        <div className='card'>
-          <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
-            <CardContent>
-            <CardHeader
-              title={<Typography variant="h5" component="div">
-              Account Information
-              </Typography>}
+    <div className="card">
+      <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
+          <CardContent>
+            <form onSubmit={handleSubmit} name={name}>  
+              <div className="block">
+              <TextField
+                required 
+                name="username" 
+                label="Username"
+                variant="outlined"
               />
-              <form onSubmit={handleSubmit}>
-                <div className="block">
-                  <TextField
-                    name="username"
-                    label="username"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="block">
-                  <TextField
-                    name="password"
-                    label="password"
-                    variant="outlined"
-                    type="password"
-                  />
-                </div>
-                <div className="block">
-                  <TextField
-                    name="fullName"
-                    label="Full Name"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="block">
-                  <TextField
-                    name="city"
-                    label="City"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="block">
-                  <TextField
-                    name="email"
-                    label="Email"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="block">
-                  <TextField
-                    name="phone_number"
-                    label="Phone"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="block">
-                  <TextField
-                    name="imgUrl"
-                    label="Picture"
-                    variant="outlined"
-                  />
-                </div>
-              <CardActions>  
-                <Button variant='contained' color='success' type='submit'>Signup</Button>
-              </CardActions>
-              </form>
-            </CardContent>
-          </Card>                                                                                      
-        </div>                         
-      ) : (
-        <div className='card'>
-          <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
-            <CardContent>
-              <form onSubmit={handleSubmit}>
-                <div className="block">
-                  <TextField
-                    name="username"
-                    label="username"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="block">
-                  <TextField
-                    name="password"
-                    label="password"
-                    variant="outlined"
-                    type="password"
-                  />
-                </div>
-              <CardActions>  
-                <Button variant='contained' color='success' type='submit'>Signup</Button>
-              </CardActions>
-              </form>
-            </CardContent>
-          </Card>                                                                                      
-        </div>
-      )}
-        {error && error.response && <div> {error.response.data} </div>}
-        </div>
-
+              </div>
+              <div className="block">
+              <TextField
+                required
+                name="password"
+                label="Password"
+                variant="outlined"
+                type="password"
+              />
+              </div>            
+              {name == 'signup' ? (
+                <div className="block">                 
+                  <div className="block">
+                    <TextField
+                      required
+                      name="fullName"
+                      label="Full Name"
+                      variant="outlined"
+                    />
+                  </div>
+                  <div className="block">
+                    <TextField
+                      required
+                      name="city"
+                      label="City"
+                      variant="outlined"
+                    />
+                  </div>
+                  <div className="block">
+                    <TextField
+                      required
+                      name="email"
+                      label="Email"
+                      variant="outlined"
+                    />
+                  </div>
+                  <div className="block">
+                    <TextField
+                      required
+                      name="phone_number"
+                      label="Phone"
+                      variant="outlined"
+                    />
+                  </div>
+                  <div className="block">
+                    <TextField
+                      name="imgUrl"
+                      label="Picture"
+                      variant="outlined"
+                    />
+                  </div>
+                </div>                                                
+              ) : <span></span>}
+                <CardActions>  
+                  <Button variant='contained' color='success' type='submit'>{displayName}</Button>
+                </CardActions>
+              {error && error.response && <div> {error.response.data}</div>} 
+            </form>
+          </CardContent>
+      </Card>
+    </div>
   )
 }
+
 
 /**
  * CONTAINER
