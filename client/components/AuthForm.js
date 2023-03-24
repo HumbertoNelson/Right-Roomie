@@ -1,6 +1,13 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {authenticateLogin, authenticateSignup} from '../store'
+import React from 'react';
+import {connect} from 'react-redux';
+import {authenticateLogin, authenticateSignup} from '../store';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
 
 /**
  * COMPONENT
@@ -10,47 +17,104 @@ const AuthForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+      {name === 'signup' ? (
+        <div className='card'>
+          <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
+            <CardContent>
+            <CardHeader
+              title={<Typography variant="h5" component="div">
+              Account Information
+              </Typography>}
+              />
+              <form onSubmit={handleSubmit}>
+                <div className="block">
+                  <TextField
+                    name="username"
+                    label="username"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="block">
+                  <TextField
+                    name="password"
+                    label="password"
+                    variant="outlined"
+                    type="password"
+                  />
+                </div>
+                <div className="block">
+                  <TextField
+                    name="fullName"
+                    label="Full Name"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="block">
+                  <TextField
+                    name="city"
+                    label="City"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="block">
+                  <TextField
+                    name="email"
+                    label="Email"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="block">
+                  <TextField
+                    name="phone_number"
+                    label="Phone"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="block">
+                  <TextField
+                    name="imgUrl"
+                    label="Picture"
+                    variant="outlined"
+                  />
+                </div>
+              <CardActions>  
+                <Button variant='contained' color='success' type='submit'>Signup</Button>
+              </CardActions>
+              </form>
+            </CardContent>
+          </Card>                                                                                      
+        </div>                         
+      ) : (
+        <div className='card'>
+          <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
+            <CardContent>
+              <form onSubmit={handleSubmit}>
+                <div className="block">
+                  <TextField
+                    name="username"
+                    label="username"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="block">
+                  <TextField
+                    name="password"
+                    label="password"
+                    variant="outlined"
+                    type="password"
+                  />
+                </div>
+              <CardActions>  
+                <Button variant='contained' color='success' type='submit'>Signup</Button>
+              </CardActions>
+              </form>
+            </CardContent>
+          </Card>                                                                                      
         </div>
-        {name == 'signup' ? (
-        <div>
-        <label htmlFor="fullName">
-          <small>Full Name</small>
-        </label>
-        <input name="fullName" type="text" />
-        <label htmlFor="city">
-          <small>City</small>
-        </label>
-        <input name="city" type="text" />
-        <label htmlFor="email">
-          <small>Email</small>
-        </label>
-        <input name="email" type="text" />
-        <label htmlFor="phone_number">
-          <small>Phone Number</small>
-        </label>
-        <input name="phone_number" type="text" />
-        <label htmlFor="imgUrl">
-          <small>Picture</small>
-        </label>
-        <input name="imgUrl" type="text" />  
-        </div>                       
-        ) : <span></span>}
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
+      )}
         {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
+        </div>
+
   )
 }
 

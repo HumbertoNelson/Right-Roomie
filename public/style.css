@@ -1,5 +1,8 @@
+* {
+  font-family: "Rockwell";
+}
+
 body, html {
-  font-family: sans-serif;
   height: 100%;
 }
 
@@ -7,8 +10,8 @@ a {
   text-decoration: none;
 }
 
-label {
-  display: block;
+input {
+  text-align: center;
 }
 
 nav a {
@@ -51,15 +54,6 @@ form div {
   cursor: pointer;
 }
 
-/* .hero-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("roommateSmall.jpg");
-  height: 50%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-} */
-
 .hero-text {
   text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em gray;
   text-align: center;
@@ -88,4 +82,8 @@ form div {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+
+.block {
+  display: block;
 }

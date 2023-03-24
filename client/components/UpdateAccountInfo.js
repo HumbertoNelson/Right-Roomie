@@ -10,6 +10,7 @@ import CardHeader from '@mui/material/CardHeader';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
+import TextField from '@mui/material/TextField';
 
 const UpdateAccountInfo = (props) => {
     const { auth } = useSelector((state) => state);
@@ -38,9 +39,13 @@ const UpdateAccountInfo = (props) => {
         dispatch(updateAccount(account));
     };
 
+
+    const {fullName, city, email, phone_number} = account;
+
     return(
+        fullName || city || email || phone_number ? (
             <div className="card">
-                <Card sx={{ width: '100%', position: "center" }} elevation={10} >
+                <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
                     <CardContent>
                         <CardHeader
                         title={<Typography variant="h5" component="div">
@@ -48,49 +53,51 @@ const UpdateAccountInfo = (props) => {
                         </Typography>}
                         />   
                         <form onSubmit={handleSubmit}>
-                            <label htmlFor="fullName">Full Name:</label>
-                            <input
-                                name="fullName"
-                                type="text"
-                                onChange={handleChange}
-                                value={account.fullName}
-                            />
-                            <label htmlFor="city">City:</label>
-                            <input
-                                name="city"
-                                type="text"
-                                onChange={handleChange}
-                                value={account.city}
-                            />
-                            <label htmlFor="email">Email:</label>
-                            <input
-                                name="email"
-                                type="text"
-                                onChange={handleChange}
-                                value={account.email}
-                            />
-                            <label htmlFor="phone_number">Phone Number:</label>
-                            <input
-                                name="phone_number"
-                                type="text"
-                                onChange={handleChange}
-                                value={account.phone_number}
-                            />
-                            <label htmlFor="imgUrl">Picture:</label>
-                            <input
-                                name="imgUrl"
-                                type="text"
-                                onChange={handleChange}
-                                value={account.imgUrl}
-                            />
+                            <div className="block">
+                                <TextField
+                                    name="fullName"
+                                    label="Full Name"
+                                    defaultValue={fullName}
+                                    variant="outlined"
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="block">
+                                <TextField
+                                    name="city"
+                                    label="City"
+                                    defaultValue={city}
+                                    variant="outlined"
+                                    onChange={handleChange}
+                                />
+                            </div>                                
+                            <div className="block">
+                                <TextField
+                                    name="email"
+                                    label="Email"
+                                    defaultValue={email}
+                                    variant="outlined"
+                                    onChange={handleChange}
+                                />
+                            </div>                                
+                            <div className="block">                             
+                                <TextField
+                                    name="phone_number"
+                                    label="Phone"
+                                    defaultValue={phone_number}
+                                    variant="outlined"
+                                    onChange={handleChange}
+                                />
+                            </div>
                         <CardActions>  
-                            <Button variant='outlined' color='success' type='submit'>Update</Button>
-                            <Button variant='outlined' color='success'><Link to='/home'>Back to Dashboard</Link></Button>
-                        </CardActions>                               
+                            <Button variant='contained' color='success' type='submit' sx={{mr: 2}}>Update</Button>
+                            <Link to='/home'><Button variant='contained' color='success'>Back to Dashboard</Button></Link>
+                        </CardActions>                             
                     </form>
                     </CardContent>
                 </Card>
             </div>
+        ) : (<span></span>)
     );
 };
 

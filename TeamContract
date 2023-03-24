@@ -44,3 +44,99 @@ This document describes our team social contract for this project
     - We will take a walk or get some water
     - Talk constructively about actionable items 
     - Bring in a 3rd party to mediate
+
+
+
+    <form onSubmit={handleSubmit} name={name}>  
+        <div>
+          <label htmlFor="username">
+            <small>Username</small>
+          </label>
+          <input name="username" type="text" />
+          <label htmlFor="password">
+            <small>Password</small>
+          </label>
+          <input name="password" type="password" />
+        </div>
+        {name == 'signup' ? (
+        <div>
+        <label htmlFor="fullName">
+          <small>Full Name</small>
+        </label>
+        <input name="fullName" type="text" />
+        <label htmlFor="city">
+          <small>City</small>
+        </label>
+        <input name="city" type="text" />
+        <label htmlFor="email">
+          <small>Email</small>
+        </label>
+        <input name="email" type="text" />
+        <label htmlFor="phone_number">
+          <small>Phone Number</small>
+        </label>
+        <input name="phone_number" type="text" />
+        <label htmlFor="imgUrl">
+          <small>Picture</small>
+        </label>
+        <input name="imgUrl" type="text" />  
+        </div>                       
+        ) : <span></span>}
+
+
+    {name === 'login' ? (
+        <div>
+        <Button onClick={handleOpen}>Login</Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+        >
+          <Box sx={style}>
+            <form onSubmit={handleSubmit} name={name}>
+            <div className="block">
+              <TextField
+                name="username"
+                label="username"
+                variant="outlined"
+                type="text"
+              />
+            </div>
+            <div className="block">
+              <TextField
+                name="password"
+                label="password"
+                variant="outlined"
+                type="password"
+              />
+            </div>
+            </form>              
+          </Box>
+        </Modal>
+        </div>        
+      ) : (
+        <div>
+        <form onSubmit={handleSubmit} name={name}>        
+        <div>
+        <label htmlFor="fullName">
+          <small>Full Name</small>
+        </label>
+        <input name="fullName" type="text" />
+        <label htmlFor="city">
+          <small>City</small>
+        </label>
+        <input name="city" type="text" />
+        <label htmlFor="email">
+          <small>Email</small>
+        </label>
+        <input name="email" type="text" />
+        <label htmlFor="phone_number">
+          <small>Phone Number</small>
+        </label>
+        <input name="phone_number" type="text" />
+        <label htmlFor="imgUrl">
+          <small>Picture</small>
+        </label>
+        <input name="imgUrl" type="text" />  
+        </div> 
+        </form>
+        </div>)}

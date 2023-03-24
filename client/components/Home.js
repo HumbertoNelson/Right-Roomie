@@ -34,22 +34,6 @@ export const Home = props => {
           </Box>
           <div className='card'>
             <Grid container spacing={2} align='center' sx={{mt: 2}}>
-              {/* <Grid item xs={12}>
-              <Card sx={{ width: '75%', height: '100%', position: "center" }}>
-                <CardContent>
-                  <CardHeader
-                  title={<Typography variant="h5" component="div">
-                  <p>User Dashboard</p>
-                  </Typography>}
-                  />
-                  <Avatar
-                    alt={fullName}
-                    src={pic}
-                    sx={{ width: 300, height: 'auto' }}
-                  />
-                  </CardContent>
-              </Card> 
-              </Grid> */}
               <Grid item xs={6}>
                 <Card sx={{ width: '95%', height: '100%', position: "center" }} elevation={10} >
                   <CardContent>
