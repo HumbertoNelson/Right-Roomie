@@ -9,6 +9,7 @@ const UserPreference = require("./models/UserPreference");
 UserInfo.belongsTo(User);
 UserPreference.belongsTo(User);
 User.hasOne(UserInfo);
+User.hasOne(UserPreference);
 
 module.exports = {
   db,

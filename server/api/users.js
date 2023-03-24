@@ -78,7 +78,7 @@ router.get("/userinfo/:id", async (req, res, next) => {
 router.post("/userinfo/", async (req, res, next) => {
   try {
     const info = await UserInfo.create(req.body);
-    info.userId = req.params.id;
+    // info.userId = req.params.id;
     await info.save();
     res.status(201).send(info);
   } catch (err) {

@@ -20,25 +20,26 @@ module.exports = router;
 //     next(err);
 //   }
 // });
-// router.get("/:id/userPreference", async (req, res, next) => {
-//   try {
-//     const userPreference = await UserPreference.findAll({
-//       where: {
-//         userId: req.params.id,
-//       },
-//       include: [User],
-//     });
-//     res.send(userPreference);
-//   } catch (err) {
-//     console.log("Can not get user preferences", err);
-//     next(err);
-//   }
-// });
+
+router.get("/:id/userPreference", async (req, res, next) => {
+  try {
+    const userPreference = await UserPreference.findAll({
+      where: {
+        userId: req.params.id,
+      },
+      include: [User],
+    });
+    res.send(userPreference);
+  } catch (err) {
+    console.log("Can not get user preferences", err);
+    next(err);
+  }
+});
 
 router.get("/userinfos", async (req, res, next) => {
   try {
     const allInfos = await UserInfo.findAll({
-      include: User,
+      include: [User],
     });
     res.status(201).send(allInfos);
   } catch (err) {
