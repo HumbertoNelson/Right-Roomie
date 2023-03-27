@@ -30,7 +30,7 @@ const UserCompatibility = () => {
   //   let finalMatches = [];
   //   let countTwo = 0;
 
-  matchInfo.map((userInfo) => {
+  matchInfo?.map((userInfo) => {
     if (userInfo.user.city !== userPref[0].user.city) return;
     if (userInfo.cleanliness === userPref[0].cleanliness) countOne++;
     if (userInfo.drugs === userPref[0].drugs) countOne++;
