@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const UPDATE_USERPREF = "UPDATE_USERPREF";
+export const GET_USERPREF = "GET_USERPREF";
 
 export const _updateUserPreferences = (updatedPref) => {
   return {
@@ -8,7 +9,21 @@ export const _updateUserPreferences = (updatedPref) => {
     updatedPref,
   };
 };
+export const _getUserPref = (preference) => {
+  return {
+    type: GET_USERPREF,
+    preference,
+  };
+};
 
+export const getUserPref = (id) => {
+  return async (dispatch) => {
+    const { data: preference } = await axios.get(
+      `/api/users/${id}/userPreference`
+    );
+    dispatch(_getUserPref(preference));
+  };
+};
 export const fetchUserPreference = (userPreference, id) => {
   return async (dispatch) => {
     const response = await axios.post(
@@ -37,6 +52,8 @@ export default function userPreferenceReducer(state = {}, action) {
     return action.userPreference;
   } else if (action.type === UPDATE_USERPREF) {
     return action.updatedPref;
+  } else if (action.type === GET_USERPREF) {
+    return action.preference;
   }
   return state;
 }
