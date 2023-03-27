@@ -22,6 +22,10 @@ const UserInfo = (props) => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(authenticateLogin());
+  // }, []);
+
   const [values, setValues] = useState({
     cleanliness: 0,
     hasPets: "",
@@ -36,9 +40,9 @@ const UserInfo = (props) => {
     overnightGuests: "",
     politicalViews: "",
     religion: "",
-    userId: auth.id,
+    userId: id,
   });
-  console.log("this is auth id", auth.id);
+  console.log("this is auth", id);
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });

@@ -82,7 +82,7 @@ const UserDetails = () => {
           </CardActionArea>
           <CardActions sx={{ justifyContent: "center" }}>
             <Button size="small" color="inherit" variant="contained">
-              <Link className="link" to={"/allUsers"}>
+              <Link className="link" to={"/compatibility"}>
                 Back
               </Link>
             </Button>

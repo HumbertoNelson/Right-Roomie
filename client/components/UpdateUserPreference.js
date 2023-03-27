@@ -88,7 +88,7 @@ const UpdateUserPreferences = (props) => {
         <br></br>
         <div>
           <label htmlFor="smoking">
-            <h3>Is a roommate that smokes a dealbreaker?</h3>
+            <h3>Is it ok if your roomate smokes?</h3>
           </label>
           <input
             onChange={onChange}

@@ -42,7 +42,17 @@ export const authenticateLogin =
   };
 
 export const authenticateSignup =
-  (username, password, fullName, city, email, phone_number, imgUrl, method) =>
+  (
+    username,
+    password,
+    fullName,
+    city,
+    email,
+    phone_number,
+    imgUrl,
+    method,
+    id
+  ) =>
   async (dispatch) => {
     try {
       const res = await axios.post(`/auth/${method}`, {
@@ -53,14 +63,16 @@ export const authenticateSignup =
         email,
         phone_number,
         imgUrl,
+        id,
       });
+
       window.localStorage.setItem(TOKEN, res.data.token);
       // dispatch(me())
       dispatch(setAuth(res.data));
+      console.log("this is response id", res.data.user.id);
+      history.push(`/userInfo/${res.data.user.id}`);
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
-    } finally {
-      history.push("/userInfo");
     }
   };
 

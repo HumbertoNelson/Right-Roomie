@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AllUsers from "./AllUsers";
 
 import { useParams } from "react-router-dom";
 import {
@@ -24,56 +25,10 @@ const UserCompatibility = () => {
     dispatch(fetchMatchPrefs());
   }, []);
 
-  console.log("this is user preference from store", userPref);
-  console.log("this is user info from store", userInfo);
-  console.log("this is match info from store", matchInfo);
-  console.log("this is match Prefs from store", matchPrefs);
-
-  //   const [userPref, setUserPref] = useState({});
-  //   const [userInfo, setUserInfo] = useState({});
-  //   const [matchInfos, setMatchInfos] = useState([]);
-  //   const [matchPrefs, setMatchPrefs] = useState([]);
-  //   const [filteredUsers, setFilteredUsers] = useState([]);
-
-  //   useEffect(() => {
-  //     const fetchUserPref = async (id) => {
-  //       try {
-  //         const response = await axios.get(`/api/users/${id}/userPreference`);
-  //         const result = await response.data;
-  //         setUserPref(result);
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     };
-  //     fetchUserPref(auth.id);
-
-  //     const fetchUserInfo = async (id) => {
-  //       try {
-  //         const response = await axios.get(`api/users/userinfo/${id}`);
-  //         const result = await response.data;
-  //         setUserInfo(result);
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     };
-  //     fetchUserInfo(auth.id);
-
-  //     const fetchMatchInfos = async () => {
-  //       try {
-  //         const response = await axios.get(`/api/compatibility/userinfos`);
-  //         const result = await response.data;
-  //         setMatchInfos(result);
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     };
-  //     fetchMatchInfos();
-  //   }, []);
-
   let countOne = 0;
-  let matchesArrOne = [];
-  let finalMatches = [];
-  let countTwo = 0;
+  let matches = [];
+  //   let finalMatches = [];
+  //   let countTwo = 0;
 
   matchInfo.map((userInfo) => {
     if (userInfo.user.city !== userPref[0].user.city) return;
@@ -116,20 +71,18 @@ const UserCompatibility = () => {
     )
       countOne++;
 
-    if (countOne >= 7 && userInfo.userId !== userPref[0].userId) {
-      matchesArrOne.push(userInfo);
-      console.log("this is first countOne", countOne);
+    if (countOne >= 10 && userInfo.userId !== userPref[0].userId) {
+      matches.push(userInfo);
     }
     countOne = 0;
-    return matchesArrOne;
-  });
-  console.log("this is arr one", matchesArrOne.values);
-
-  const result = matchPrefs.map((pref) => {
-    Object.values(matchesArrOne).filter((user) => user.userId === pref.userId);
+    return matches;
   });
 
-  console.log("this is result", result);
+  //   const result = matchPrefs.map((pref) => {
+  //     Object.values(matchesArrOne).filter((user) => user.userId === pref.userId);
+  //   });
+
+  //   console.log("this is result", result);
 
   //   console.log("this is arr 2", finalMatches);
 
@@ -196,16 +149,11 @@ const UserCompatibility = () => {
   //     return finalMatches;
   //   });
 
-  console.log("final matches", finalMatches);
-
   return userPref.length > 0 ? (
     <div>
-      <h2>
-        Hi {auth.fullName}!<br></br>
-        <br></br>
-      </h2>
-      <h2>Here are you matches!</h2>
-      <h1></h1>
+      <h2>{auth.fullName}, Here are you matches:</h2>
+      <br></br>
+      <AllUsers matches={matches} />
     </div>
   ) : (
     <h4>Sorry, there are no matches in your area!</h4>
