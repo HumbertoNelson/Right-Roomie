@@ -16,6 +16,7 @@ const UpdateUserInfo = (props) => {
     const fetchUserInfo = async (id) => {
       try {
         const response = await axios.get(`/api/users/userinfo/${id}`);
+        console.log('response', response)
         const result = await response.data;
         setValues(result[0]);
       } catch (error) {
