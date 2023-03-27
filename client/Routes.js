@@ -41,7 +41,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/allUsers" component={AllUsers} />
             <Route path="/userDetails/:id" component={UserDetails} />
-            <Route path="/userPreference" component={userPreference} />
+            <Route path="/userPreference/:id" component={userPreference} />
             <Route path="/userInfo/:id" component={UserInfo} />
             <Route path="/account" component={UpdateAccountInfo} />
             <Route path="/updateUserInfo" component={UpdateUserInfo} />

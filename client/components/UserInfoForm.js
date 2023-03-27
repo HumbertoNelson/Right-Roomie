@@ -54,7 +54,7 @@ const UserInfo = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     dispatch(addToUserInfo(values));
-    history.push("/userPreference");
+    history.push(`/userPreference/${id}`);
   };
 
   console.log("cleanliness", values);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { fetchUserPreference } from "../store/userPreference";
 import { useDispatch, useSelector } from "react-redux";
-
+import history from "../history";
 import { Link, useParams, Redirect } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -32,7 +32,7 @@ const userPreference = () => {
     sexualOrientation: "",
     politicalViews: "",
     religion: "",
-    userId: auth.id,
+    userId: id,
   });
 
   const onChange = (ev) => {
