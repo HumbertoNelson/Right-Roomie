@@ -13,7 +13,7 @@ import {
 const UserCard = (props) => {
   const { userInfo } = props;
   return (
-    <Card sx={{ width: "100%", height: "100%" }}>
+    <Card sx={{ width: "100%", height: "100%" }} className="matchCard">
       <CardActionArea>
         <CardMedia
           component="img"

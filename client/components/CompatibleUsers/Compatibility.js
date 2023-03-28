@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import AllUsers from "./AllUsers";
 
 import { useParams } from "react-router-dom";
@@ -151,9 +152,14 @@ const UserCompatibility = () => {
 
   return userPref.length > 0 ? (
     <div>
-      <h2>{auth.fullName}, Here are you matches:</h2>
+      <div className="matchHeader">
+        <h2>Here Are Your Matches:</h2>
+      </div>
       <br></br>
       <AllUsers matches={matches} />
+      <Link to="/home">
+        <button className="dashButton">Back to dashboard</button>
+      </Link>
     </div>
   ) : (
     <h4>Sorry, there are no matches in your area!</h4>

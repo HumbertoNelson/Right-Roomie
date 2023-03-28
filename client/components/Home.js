@@ -118,7 +118,7 @@ export const Home = (props) => {
                   component={"span"}
                 >
                   <p>
-                    <Link to="/userCompatibility">
+                    <Link to="/compatibility">
                       <Button
                         variant="contained"
                         sx={{ backgroundColor: "#28536b" }}
