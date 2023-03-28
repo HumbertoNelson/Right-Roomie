@@ -3,6 +3,12 @@ import { fetchUserPreference } from "../store/userPreference";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link, useParams, Redirect } from "react-router-dom";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
 
 const userPreference = () => {
   var slider = document.getElementById("myRange");
@@ -49,12 +55,14 @@ const userPreference = () => {
   };
 
   return (
-    <div>
-      <h2>
-        Hi {auth.fullName}!<br></br>
-        <br></br>
-      </h2>
-      <h3>Please fill out the form for your preferences in a roommate:</h3>
+    <div className='card'>
+      <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
+        <CardContent>
+          <CardHeader
+            title={<Typography variant="h5" component="div">
+            Preferences For Your Roommate
+            </Typography>}
+            />
       <form onSubmit={getPreference}>
         <div className="slidecontainer">
           <h3 id="cleanlinessRange">
@@ -146,77 +154,53 @@ const userPreference = () => {
         <br></br>
         <div>
           <label htmlFor="gender">
-            <h3>Roommate Gender</h3>
+            <h3>Do you prefer your roommate to be a certain gender?</h3>
           </label>
-          <input
+          <select onChange={onChange} name="gender" value={preference.gender}>
+            <option value={""}> </option>
+            <option value={(preference.gender = "Male")}>Male</option>
+            <option value={(preference.gender = "Female")}>Female</option>
+            <option value={(preference.gender = "Non-binary")}>Nonbinary</option>
+            <option value={(preference.gender = "Transgender")}>Transgender</option>
+            <option value={(preference.gender = "No Preference")}>
+              No Preference
+            </option>
+          </select>          
+        </div>
+        <br></br>
+        <div>
+          <label htmlFor="sexualOrientation">
+            <h3>Do you care about your roomate's sexual orientation?</h3>
+          </label>
+          <select
             onChange={onChange}
-            type="radio"
-            name="gender"
-            value={(preference.gender = "Male")}
-          />
-          Male
-          <input
-            onChange={onChange}
-            type="radio"
-            name="gender"
-            value={(preference.gender = "Female")}
-          />
-          Female
-          <input
-            onChange={onChange}
-            type="radio"
-            name="gender"
-            value={(preference.gender = "Transgender")}
-          />
-          Transgender
-          <input
-            onChange={onChange}
-            type="radio"
-            name="gender"
-            value={(preference.gender = "Non-binary")}
-          />
-          Non-binary
-          <input
-            onChange={onChange}
-            type="radio"
-            name="gender"
-            value={(preference.gender = "No Preference")}
-          />
-          No Preference
+            name="sexualOrientation"
+            value={preference.sexualOrientation}
+          >
+            <option value={""}></option>
+            <option value={"Straight"}>Straight</option>
+            <option value={"LGBTQIA+"}>LGBTQIA+</option>
+            <option value={"No Preference"}>
+              No Preference
+            </option>
+          </select>
         </div>
         <br></br>
         <div>
           <label htmlFor="workSchedule">
-            <h3>What's your prefered work schedule in a roomate?</h3>
+            <h3>What's your preferred work schedule in a roomate?</h3>
           </label>
-          <input
+          <select
             onChange={onChange}
-            type="radio"
             name="workSchedule"
-            value={"Weekdays"}
-          />
-          Weekdays
-          <input
-            onChange={onChange}
-            type="radio"
-            name="workSchedule"
-            value={"Weekends"}
-          />
-          Weekends
-          <input
-            onChange={onChange}
-            type="radio"
-            name="workSchedule"
-            value={"Nights"}
-          />
-          Nights
-          <input
-            onChange={onChange}
-            type="radio"
-            name="workSchedule"
-            value={"No Preference"}
-          />
-          No Preference
+            value={preference.workSchedule}
+          >
+            <option value={""}></option>
+            <option value={"Weekdays"}>Weekdays</option>
+            <option value={"Nights"}>Nights</option>
+            <option value={"Weekends"}>Weekends</option>
+            <option value={"No Preference"}>No Preference</option>
+          </select>
         </div>
         <br></br>
         <div className="slidecontainer">
@@ -273,125 +257,51 @@ const userPreference = () => {
           No
         </div>
         <br></br>
-        <div>
-          <label htmlFor="sexualOrientation">
-            <h3>Do you care about your roomate's sexual orientation?</h3>
-          </label>
-          <input
-            onChange={onChange}
-            type="radio"
-            name="sexualOrientation"
-            value={"Straight"}
-          />
-          Striaght
-          <input
-            onChange={onChange}
-            type="radio"
-            name="sexualOrientation"
-            value={"LGBTQIA+"}
-          />
-          LGBTQIA+
-          <input
-            onChange={onChange}
-            type="radio"
-            name="sexualOrientation"
-            value={"No Preference"}
-          />
-          No Preference
-        </div>
-        <br></br>
+
         <div>
           <label htmlFor="politicalViews">
             <h3>Do you care about your roommate's political views?</h3>
           </label>
-          <input
+          <select
             onChange={onChange}
-            type="radio"
             name="politicalViews"
-            value={"Democrat"}
-          />
-          Democrat
-          <input
-            onChange={onChange}
-            type="radio"
-            name="politicalViews"
-            value={"Republican"}
-          />
-          Republican
-          <input
-            onChange={onChange}
-            type="radio"
-            name="politicalViews"
-            value={"No Preference"}
-          />
-          No Preference
+            value={preference.politicalViews}
+          >
+            <option value={""}></option>
+            <option value={"Democrat"}>Democrat</option>
+            <option value={"Republican"}>Republican</option>
+            <option value={"No Preference"}>No Preference</option>
+          </select>
         </div>
         <br></br>
         <div>
           <label htmlFor="religion">
             <h3>Do you care about your roommate's religion?</h3>
           </label>
-          <input
+          <select
             onChange={onChange}
-            type="radio"
             name="religion"
-            value={"Christian"}
-          />
-          Christian
-          <input
-            onChange={onChange}
-            type="radio"
-            name="religion"
-            value={"Jewish"}
-          />
-          Jewish
-          <input
-            onChange={onChange}
-            type="radio"
-            name="religion"
-            value={"Muslim"}
-          />
-          Muslim
-          <input
-            onChange={onChange}
-            type="radio"
-            name="religion"
-            value={"Buddhist"}
-          />
-          Buddhist
-          <input
-            onChange={onChange}
-            type="radio"
-            name="religion"
-            value={"Hindu"}
-          />
-          Hindu
-          <input
-            onChange={onChange}
-            type="radio"
-            name="religion"
-            value={"Atheist"}
-          />
-          Atheist
-          <input
-            onChange={onChange}
-            type="radio"
-            name="religion"
-            value={"Non-Religious"}
-          />
-          Non-Religious
-          <input
-            onChange={onChange}
-            type="radio"
-            name="religion"
-            value={"No Preference"}
-          />
-          No Preference
+            value={preference.religion}
+          >
+            <option value={""}></option>
+            <option value={"Christian"}>Christian</option>
+            <option value={"Jewish"}>Jewish</option>
+            <option value={"Muslim"}>Muslim</option>
+            <option value={"Buddhist"}>Buddhist</option>
+            <option value={"Hindu"}>Hindu</option>
+            <option value={"Atheist"}>Atheist</option>
+            <option value={"Non-Religious"}>Non-Religious</option>
+            <option value={"No Preference"}>
+              No Preference
+            </option>
+          </select>
         </div>
-        <Link to={`/${id}/userPreference/userCompatibility`}>
-          <button type="submit">Submit</button>
-        </Link>
+        <CardActions>
+          <Link to='/home'><Button variant='contained' color='success'>Save Preferences</Button></Link>
+        </CardActions>
       </form>
+      </CardContent>
+      </Card>
     </div>
   );
 };

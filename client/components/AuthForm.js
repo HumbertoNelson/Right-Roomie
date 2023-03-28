@@ -1,6 +1,12 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {authenticateLogin, authenticateSignup} from '../store'
+import React from 'react';
+import {connect} from 'react-redux';
+import {authenticateLogin, authenticateSignup} from '../store';
+import TextField from '@mui/material/TextField';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 /**
  * COMPONENT
@@ -9,50 +15,72 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        {name == 'signup' ? (
-        <div>
-        <label htmlFor="fullName">
-          <small>Full Name</small>
-        </label>
-        <input name="fullName" type="text" />
-        <label htmlFor="city">
-          <small>City</small>
-        </label>
-        <input name="city" type="text" />
-        <label htmlFor="email">
-          <small>Email</small>
-        </label>
-        <input name="email" type="text" />
-        <label htmlFor="phone_number">
-          <small>Phone Number</small>
-        </label>
-        <input name="phone_number" type="text" />
-        <label htmlFor="imgUrl">
-          <small>Picture</small>
-        </label>
-        <input name="imgUrl" type="text" />  
-        </div>                       
-        ) : <span></span>}
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
+    <div className="card">
+      <Card sx={{ width: '75%', position: "center", mt: 5, backgroundColor: '#bed3de' }} style={{}} elevation={10} >
+          <CardContent>
+            <form onSubmit={handleSubmit} name={name}>
+              <TextField
+                required
+                name="username" 
+                label="Username"
+                variant="outlined"
+              />
+              <br />
+              <TextField
+                required
+                name="password"
+                label="Password"
+                variant="outlined"
+                type="password"
+              />          
+              {name == 'signup' ? (
+                <div className="block">                 
+                    <TextField
+                      required
+                      name="fullName"
+                      label="Full Name"
+                      variant="outlined"
+                    />
+                    <br />
+                    <TextField
+                      required
+                      name="city"
+                      label="City"
+                      variant="outlined"
+                    />
+                    <br />
+                    <TextField
+                      required
+                      name="email"
+                      label="Email"
+                      variant="outlined"
+                    />
+                    <br />
+                    <TextField
+                      required
+                      name="phone_number"
+                      label="Phone"
+                      variant="outlined"
+                    />
+                    <br />
+                    <TextField
+                      name="imgUrl"
+                      label="Picture"
+                      variant="outlined"
+                    /> 
+                </div>                                               
+              ) : <br></br>}
+                <CardActions>  
+                  <Button variant='contained' sx={{backgroundColor: '#28536b'}} type='submit'>{displayName}</Button>
+                </CardActions>
+              {error && error.response && <div> {error.response.data}</div>}
+            </form>
+        </CardContent>
+      </Card>
     </div>
   )
 }
+
 
 /**
  * CONTAINER

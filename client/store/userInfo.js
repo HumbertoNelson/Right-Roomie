@@ -1,4 +1,5 @@
 import axios from "axios";
+import history from '../history'
 
 export const ADD_USERINFO = "ADD_USERINFO";
 export const FETCH_USERINFO = "FETCH_USERINFO";
@@ -37,6 +38,7 @@ export const addToUserInfo = (values) => {
       values
     );
     dispatch(_addToUserInfo(newUserInfo));
+    history.push('/userInfo')
   };
 };
 export const updateUserInfo = (newValues, id) => {

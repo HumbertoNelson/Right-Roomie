@@ -4,6 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToUserInfo } from "../store";
 import { useParams } from "react-router-dom";
 import history from '../history';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import Box from '@mui/material/Box';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
+import TextField from '@mui/material/TextField';
+import Slider from '@mui/material/Slider';
 
 const UserInfo = (props) => {
   let slider = document.getElementById("myRange");
@@ -41,27 +51,48 @@ const UserInfo = (props) => {
     history.push('/userPreference')
   };
 
+  console.log('cleanliness', values)
+
   return (
-    <div>
-      <h1>Update Your Information</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="slidecontainer">
-          <label htmlFor="cleanliness">
-            <h3 id="cleanlinessRange">
-              How clean are you?: {values.cleanliness}
-            </h3>
-          </label>
-          <input
-            name="cleanliness"
-            type="range"
-            min="0"
-            max="5"
-            value={values.cleanliness}
-            className="slider"
-            id="myRange"
-            onChange={handleChange}
-          ></input>
-        </div>
+    <div className='card'>
+      <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
+        <CardContent>
+          <CardHeader
+            title={<Typography variant="h5" component="div">
+            Information About You
+            </Typography>}
+            />       
+          <form onSubmit={handleSubmit}>
+          <Box sx={{ width: 300 }}>
+          <Typography id="input-slider" gutterBottom>
+            How clean are you?
+          </Typography>
+            <Slider
+              aria-label="Cleanliness"
+              min={0}
+              max={5}
+              defaultValue={values.cleanliness}
+              valueLabelDisplay="on"
+              onChange={handleChange}
+            />
+          </Box>            
+            {/* <div className="slidecontainer">
+              <label htmlFor="cleanliness">
+                <h3 id="cleanlinessRange">
+                  How clean are you? {values.cleanliness}
+                </h3>
+              </label>
+              <input
+                name="cleanliness"
+                type="range"
+                min="0"
+                max="5"
+                value={values.cleanliness}
+                className="slider"
+                id="myRange"
+                onChange={handleChange}
+              ></input>
+            </div> */}
         <br></br>
         <div>
           <label htmlFor="pets">
@@ -105,7 +136,7 @@ const UserInfo = (props) => {
         <br></br>
         <div className="slidecontainer">
           <label htmlFor="age">
-            <h3>How old are you?: {values.age}</h3>
+            <h3>How old are you? {values.age}</h3>
           </label>
           <input
             onChange={handleChange}
@@ -183,7 +214,7 @@ const UserInfo = (props) => {
             value={values.workSchedule}
           >
             <option value={""}></option>
-            <option value={"Week Days"}>Week Days</option>
+            <option value={"Week Days"}>Weekdays</option>
             <option value={"Nights"}>Nights</option>
             <option value={"Weekends"}>Weekends</option>
           </select>
@@ -286,8 +317,12 @@ const UserInfo = (props) => {
           </select>
         </div>
         <br></br>
-        <button type="submit">Save Info</button>
+        <CardActions>  
+          <Button variant='contained' color='success' type='submit'>Save Info</Button>
+        </CardActions>
       </form>
+      </CardContent>
+      </Card>
     </div>
   );
 };

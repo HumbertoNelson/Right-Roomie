@@ -12,8 +12,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import { positions } from "@mui/system";
+import { position } from "@mui/system";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
+import Avatar from '@mui/material/Avatar';
 
 function Navbar({ handleClick, isLoggedIn, id }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -29,36 +30,36 @@ function Navbar({ handleClick, isLoggedIn, id }) {
   return (
     <div>
       {Object.keys(isLoggedIn).length > 0 ? (
-        <AppBar style={{ background: "#66bb6a" }} position="static">
+        <AppBar style={{ background: "#28536b" }} position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <Diversity1Icon
                 sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
               />
               <Typography
-                variant="h6"
+                variant="h4"
                 noWrap
-                component="p"
+                component="p" 
                 sx={{
                   mr: 10,
                   display: { xs: "none", md: "flex" },
                   fontWeight: 700,
-                  color: "inherit",
+                  color: "#f6f0ed",
                   textDecoration: "none",
                 }}
               >
                 Right Roomie
               </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <Box justifyContent="left" sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
                   size="large"
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleOpenUserMenu}
-                  color="inherit"
+                  color="#f6f0ed"
                 >
-                  <MenuIcon sx={{ position: "right" }} />
+                  <Avatar alt={isLoggedIn.fullName} src={isLoggedIn.imgUrl} />
                 </IconButton>
                 <Menu
                   id="menu-appbar"
@@ -83,15 +84,6 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                       <Typography textAlign="center">Dashboard</Typography>
                     </Link>
                   </MenuItem>
-                  {/* <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to={`users/${id}/account`}><Typography textAlign="center">Account</Typography></Link>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to={`users/userinfo/${id}`}><Typography textAlign="center">User Information</Typography></Link>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to='/home'><Typography textAlign="center">Roommate Preferences</Typography></Link>
-                </MenuItem> */}
                   <MenuItem onClick={handleCloseUserMenu}>
                     <a href="#" onClick={handleClick}>
                       <Typography textAlign="center">Logout</Typography>
@@ -103,7 +95,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
               />
               <Typography
-                variant="h5"
+                variant="h3"
                 noWrap
                 component="p"
                 sx={{
@@ -111,7 +103,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   display: { xs: "flex", md: "none" },
                   flexGrow: 1,
                   fontWeight: 700,
-                  color: "inherit",
+                  color: "#f6f0ed",
                   textDecoration: "none",
                 }}
               >
@@ -124,33 +116,15 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 <Link to="/home">
                   <Button
                     onClick={handleCloseUserMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: "#f6f0ed", display: "block" }}
                   >
                     Dashboard
                   </Button>
                 </Link>
-                {/* <Link to={`users/${id}/account`}><Button
-                onClick={handleCloseUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Account
-              </Button></Link>
-              <Link to="/updateUserInfo"><Button
-                onClick={handleCloseUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                User Information
-              </Button></Link>
-              <Link to='/home'><Button
-                onClick={handleCloseUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Roommate Preferences
-              </Button></Link> */}
                 <a href="#" onClick={handleClick}>
                   <Button
                     onClick={handleCloseUserMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: "#f6f0ed", display: "block" }}
                   >
                     Logout
                   </Button>
@@ -160,7 +134,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
           </Container>
         </AppBar>
       ) : (
-        <AppBar style={{ background: "#66bb6a" }} position="static">
+        <AppBar style={{ background: "#28536b" }} position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <Diversity1Icon
@@ -174,7 +148,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   mr: 10,
                   display: { xs: "none", md: "flex" },
                   fontWeight: 700,
-                  color: "inherit",
+                  color: "#f6f0ed",
                   textDecoration: "none",
                 }}
               >
@@ -187,7 +161,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleOpenUserMenu}
-                  color="inherit"
+                  color="#f6f0ed"
                 >
                   <MenuIcon />
                 </IconButton>
@@ -234,7 +208,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   display: { xs: "flex", md: "none" },
                   flexGrow: 1,
                   fontWeight: 700,
-                  color: "inherit",
+                  color: "#f6f0ed",
                   textDecoration: "none",
                 }}
               >
@@ -248,7 +222,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 <Link to="/login">
                   <Button
                     onClick={handleCloseUserMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: "#f6f0ed", display: "block" }}
                   >
                     Login
                   </Button>
@@ -256,7 +230,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 <Link to="/signup">
                   <Button
                     onClick={handleCloseUserMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: "#f6f0ed", display: "block" }}
                   >
                     Signup
                   </Button>
@@ -270,36 +244,6 @@ function Navbar({ handleClick, isLoggedIn, id }) {
   );
 }
 
-// const Navbar = ({ handleClick, isLoggedIn, id }) => (
-// <div>
-//   {/* <h1>Right Roomie</h1> */}
-//   <nav>
-//     {isLoggedIn ? (
-//       <div>
-//         {/* The navbar will show these links after you log in */}
-//         <h1>Right Roomie</h1>
-//         <Link to="/home">Home</Link>
-//         {/* <Link to={`/${id}/userPreference}`}>User Preferences</Link> */}
-//         <a href="#" onClick={handleClick}>
-//           Logout
-//         </a>
-//         {/* <Link to="/userInfo">User Info Form</Link> */}
-//         <p>
-//           <Link to={`users/${id}/account`}>Account Information</Link>
-//           <Link to="/updateUserInfo"> Update User Info Form</Link>
-//         </p>
-//       </div>
-//     ) : (
-//       <div>
-//         {/* The navbar will show these links before you log in */}
-//         <Link to="/login">Login</Link>
-//         <Link to="/signup">Sign Up</Link>
-//       </div>
-//     )}
-//   </nav>
-//   <hr />
-// </div>
-// );
 
 /**
  * CONTAINER

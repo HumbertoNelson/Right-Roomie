@@ -27,7 +27,8 @@
     "morgan": "^1.10.0",
     "pg": "^8.8.0",
     "prop-types": "^15.8.1",
-    "sequelize": "^6.21.4"
+    "sequelize": "^6.21.4",
+    "start-server": "^0.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
