@@ -73,9 +73,9 @@ export const Root = () => {
                     <Item sx={{borderRight: "1px solid black", borderLeft: "1px solid black"}}><h2>Fill out your info and roommate preferences</h2></Item>
                     <Item><h2>Get your matches</h2></Item>
                 </Box>
-                <Box className='testBox' sx={{textAlign: "center", p: 8, backgroundColor: 'success.light', border: "1px solid black", color: 'white'}}><h1>What Right Roomie users are saying:</h1></Box>
+                <Box className='testBox' sx={{textAlign: "center", p: 8, backgroundColor: '#bed3de', border: "1px solid black", color: '#f6f0ed'}}><h1>What Right Roomie users are saying:</h1></Box>
                 <div className='card'>
-                    <Card sx={{ width: '50%' }}>
+                    <Card sx={{ width: '50%', backgroundColor: "#f6f0ed", mt: 1 }}>
                         <CardContent>
                             <CardHeader
                                 avatar={<Avatar alt="John" src="john.jpg" />}
@@ -92,7 +92,7 @@ export const Root = () => {
                             </Typography>
                         </CardContent>
                     </Card>
-                    <Card sx={{ width: '50%' }}>
+                    <Card sx={{ width: '50%', backgroundColor: "#f6f0ed", ml: 1, mt: 1 }}>
                         <CardContent>
                             <CardHeader
                                 avatar={<Avatar alt="maggie" src="maggie.jpg" />}
@@ -111,7 +111,7 @@ export const Root = () => {
                     </Card>
                 </div>
                 <div className='card'>
-                    <Card sx={{ width: '50%' }}>
+                    <Card sx={{ width: '50%', backgroundColor: "#f6f0ed", mt: 1 }}>
                         <CardContent>
                             <CardHeader
                                 avatar={<Avatar alt="Lucy" src="lucy.jpg" />}
@@ -128,7 +128,7 @@ export const Root = () => {
                             </Typography>
                         </CardContent>
                     </Card>
-                    <Card sx={{ width: '50%' }}>
+                    <Card sx={{ width: '50%', backgroundColor: "#f6f0ed", mt: 1, ml: 1 }}>
                         <CardContent>
                             <CardHeader
                                 avatar={<Avatar alt="tony" src="tony.jpg" />}

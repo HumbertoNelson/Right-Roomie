@@ -50,6 +50,7 @@ class Routes extends Component {
               component={UpdateUserPreference}
             />
             <Route path="/compatibility" component={UserCompatibility} />
+            <Route path="/" component={Root} />
             <Redirect to="/home" />
           </Switch>
         ) : (
