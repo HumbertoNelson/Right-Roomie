@@ -124,7 +124,6 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                     Dashboard
                   </Button>
                 </Link>
-                <Link to="/contact">Contact</Link>
                 {/* <Link to={`users/${id}/account`}><Button
                 onClick={handleCloseUserMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}

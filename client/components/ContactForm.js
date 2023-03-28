@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import history from "../history";
 
 const ContactForm = () => {
   const form = useRef();
@@ -23,27 +24,30 @@ const ContactForm = () => {
           console.log(error.text);
         }
       );
+    history.push("/compatibility");
   };
 
   return (
-    <div className="contactDiv">
-      <form ref={form} onSubmit={sendEmail} className="contactForm">
-        <div>
-          <label>Your Name</label>
-          <input type="text" name="from_name" />
-        </div>
-        <div>
-          <label>Your Email</label>
-          <input type="email" name="user_email" />
-        </div>
-        <div>
-          <label>Message</label>
-          <textarea name="message" />
-        </div>
-        <div>
-          <input type="submit" value="Send" />
-        </div>
-      </form>
+    <div>
+      <div className="contactDiv">
+        <form ref={form} onSubmit={sendEmail} className="contactForm">
+          <div>
+            <label>Your Name</label>
+            <input type="text" name="from_name" />
+          </div>
+          <div>
+            <label>Your Email</label>
+            <input type="email" name="user_email" />
+          </div>
+          <div>
+            <label>Message</label>
+            <textarea name="message" />
+          </div>
+          <div>
+            <input type="submit" value="Send" />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

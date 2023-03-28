@@ -347,3 +347,10 @@ input[type="submit"] {
   border: none;
   border-radius: 5px;
 }
+.contactForm button{
+  cursor: pointer;
+  background: #28536b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
