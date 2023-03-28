@@ -282,11 +282,55 @@ object-fit: cover;
 
 .dashButton {
   border: none; 
+  background-color: #28536b;
   margin-top: 20px;
   margin-left: 15px;
-  padding: 5px;
-  font-size: 15px;
+  padding: 8px;
+  font-size: 16px;
   cursor: pointer;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 5px;
+  color: white;
+}
+
+.dashHeader{
+  margin-bottom: 25px;
+}
+.contactForm{
+  border: 1px black solid;
+  max-width: max-content;
+  max-height:fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #5d7b8c;
+}
+.contactDiv{
+  display: flex;
+  justify-content: center;
+  border: black solid 1px;
+  height: 600px;
+  align-items: center;
+}
+.contactForm div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+.contactForm label{
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-right: 10px;
+  color: white;
+}
+.contactForm input{
+  padding: .5rem;
+  min-width: 20rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.contactForm textarea{
+  padding: .5rem;
+  min-width: 20rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

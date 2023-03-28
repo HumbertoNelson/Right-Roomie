@@ -20,6 +20,7 @@ import UpdateUserPreferences from "./components/UpdateUserPreference";
 import AllUsers from "./components/CompatibleUsers/AllUsers";
 import UserDetails from "./components/CompatibleUsers/UserDetails";
 import UserCompatibility from "./components/CompatibleUsers/Compatibility";
+import ContactForm from "./components/ContactForm";
 
 /**
  * COMPONENT
@@ -50,6 +51,7 @@ class Routes extends Component {
               component={UpdateUserPreference}
             />
             <Route path="/compatibility" component={UserCompatibility} />
+            <Route path="/contact" component={ContactForm} />
             <Redirect to="/home" />
           </Switch>
         ) : (
