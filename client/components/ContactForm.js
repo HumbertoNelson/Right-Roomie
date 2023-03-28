@@ -1,38 +1,47 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const ContactForm = () => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [name, setName] = useState("");
+  const form = useRef();
 
-  const submitHandler = async (event) => {
-    event.preventDefault();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_gte6in3",
+        "template_pmti76f",
+        form.current,
+        "ZvBmo7GhkOiCXvhGA"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent!");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   return (
     <div className="contactDiv">
-      <form onSubmit={submitHandler} className="contactForm">
+      <form ref={form} onSubmit={sendEmail} className="contactForm">
         <div>
-          <label htmlFor="name">Name</label>
-          <input onChange={(e) => setName(e.target.value)} type="text"></input>
+          <label>Your Name</label>
+          <input type="text" name="from_name" />
         </div>
         <div>
-          <label htmlFor="email">Email</label>
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-          ></input>
+          <label>Your Email</label>
+          <input type="email" name="user_email" />
         </div>
         <div>
-          <label htmlFor="message">Message</label>
-          <textarea
-            id="message"
-            onChange={(e) => setMessage(e.target.value)}
-          ></textarea>
+          <label>Message</label>
+          <textarea name="message" />
         </div>
         <div>
-          <label></label>
-          <button type="submit">Send</button>
+          <input type="submit" value="Send" />
         </div>
       </form>
     </div>

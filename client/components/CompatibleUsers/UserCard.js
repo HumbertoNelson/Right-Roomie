@@ -35,6 +35,11 @@ const UserCard = (props) => {
             Details
           </Link>
         </Button>
+        <Button size="small" color="primary" variant="outlined">
+          <Link className="link" to="/contact">
+            Contact
+          </Link>
+        </Button>
       </CardActions>
     </Card>
   );
