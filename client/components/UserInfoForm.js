@@ -51,7 +51,7 @@ const UserInfo = (props) => {
     history.push('/userPreference')
   };
 
-  console.log('cleanliness', values.cleanliness)
+  console.log('cleanliness', values)
 
   return (
     <div className='card'>
@@ -63,7 +63,7 @@ const UserInfo = (props) => {
             </Typography>}
             />       
           <form onSubmit={handleSubmit}>
-          {/* <Box sx={{ width: 300 }}>
+          <Box sx={{ width: 300 }}>
           <Typography id="input-slider" gutterBottom>
             How clean are you?
           </Typography>
@@ -71,15 +71,15 @@ const UserInfo = (props) => {
               aria-label="Cleanliness"
               min={0}
               max={5}
-              value={values.cleanliness}
+              defaultValue={values.cleanliness}
               valueLabelDisplay="on"
               onChange={handleChange}
             />
-          </Box>             */}
-            <div className="slidecontainer">
+          </Box>            
+            {/* <div className="slidecontainer">
               <label htmlFor="cleanliness">
                 <h3 id="cleanlinessRange">
-                  How clean are you?: {values.cleanliness}
+                  How clean are you? {values.cleanliness}
                 </h3>
               </label>
               <input
@@ -92,7 +92,7 @@ const UserInfo = (props) => {
                 id="myRange"
                 onChange={handleChange}
               ></input>
-            </div>
+            </div> */}
         <br></br>
         <div>
           <label htmlFor="pets">
@@ -136,7 +136,7 @@ const UserInfo = (props) => {
         <br></br>
         <div className="slidecontainer">
           <label htmlFor="age">
-            <h3>How old are you?: {values.age}</h3>
+            <h3>How old are you? {values.age}</h3>
           </label>
           <input
             onChange={handleChange}

@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 /**
  * COMPONENT
@@ -15,75 +16,66 @@ const AuthForm = props => {
 
   return (
     <div className="card">
-      <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
+      <Card sx={{ width: '75%', position: "center", mt: 5, backgroundColor: '#bed3de' }} style={{}} elevation={10} >
           <CardContent>
-            <form onSubmit={handleSubmit} name={name}>  
-              <div className="block">
+            <form onSubmit={handleSubmit} name={name}>
               <TextField
-                required 
+                required
                 name="username" 
                 label="Username"
                 variant="outlined"
               />
-              </div>
-              <div className="block">
+              <br />
               <TextField
                 required
                 name="password"
                 label="Password"
                 variant="outlined"
                 type="password"
-              />
-              </div>            
+              />          
               {name == 'signup' ? (
                 <div className="block">                 
-                  <div className="block">
                     <TextField
                       required
                       name="fullName"
                       label="Full Name"
                       variant="outlined"
                     />
-                  </div>
-                  <div className="block">
+                    <br />
                     <TextField
                       required
                       name="city"
                       label="City"
                       variant="outlined"
                     />
-                  </div>
-                  <div className="block">
+                    <br />
                     <TextField
                       required
                       name="email"
                       label="Email"
                       variant="outlined"
                     />
-                  </div>
-                  <div className="block">
+                    <br />
                     <TextField
                       required
                       name="phone_number"
                       label="Phone"
                       variant="outlined"
                     />
-                  </div>
-                  <div className="block">
+                    <br />
                     <TextField
                       name="imgUrl"
                       label="Picture"
                       variant="outlined"
-                    />
-                  </div>
-                </div>                                                
-              ) : <span></span>}
+                    /> 
+                </div>                                               
+              ) : <br></br>}
                 <CardActions>  
-                  <Button variant='contained' color='success' type='submit'>{displayName}</Button>
+                  <Button variant='contained' sx={{backgroundColor: '#28536b'}} type='submit'>{displayName}</Button>
                 </CardActions>
-              {error && error.response && <div> {error.response.data}</div>} 
+              {error && error.response && <div> {error.response.data}</div>}
             </form>
-          </CardContent>
+        </CardContent>
       </Card>
     </div>
   )

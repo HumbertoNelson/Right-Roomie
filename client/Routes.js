@@ -7,7 +7,7 @@ import {
   Redirect,
   useParams,
 } from "react-router-dom";
-import { AuthForm, Login, Signup } from "./components/AuthForm";
+import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import UpdateUserInfo from "./components/UpdateUserInfo";
 import UpdateUserPreference from "./components/UpdateUserInfo";

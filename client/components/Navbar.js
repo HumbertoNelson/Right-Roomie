@@ -30,7 +30,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
   return (
     <div>
       {Object.keys(isLoggedIn).length > 0 ? (
-        <AppBar style={{ background: "#66bb6a" }} position="static">
+        <AppBar style={{ background: "#28536b" }} position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <Diversity1Icon
@@ -44,7 +44,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   mr: 10,
                   display: { xs: "none", md: "flex" },
                   fontWeight: 700,
-                  color: "inherit",
+                  color: "#f6f0ed",
                   textDecoration: "none",
                 }}
               >
@@ -57,7 +57,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleOpenUserMenu}
-                  color="inherit"
+                  color="#f6f0ed"
                 >
                   <Avatar alt={isLoggedIn.fullName} src={isLoggedIn.imgUrl} />
                 </IconButton>
@@ -103,7 +103,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   display: { xs: "flex", md: "none" },
                   flexGrow: 1,
                   fontWeight: 700,
-                  color: "inherit",
+                  color: "#f6f0ed",
                   textDecoration: "none",
                 }}
               >
@@ -116,7 +116,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 <Link to="/home">
                   <Button
                     onClick={handleCloseUserMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: "#f6f0ed", display: "block" }}
                   >
                     Dashboard
                   </Button>
@@ -124,7 +124,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 <a href="#" onClick={handleClick}>
                   <Button
                     onClick={handleCloseUserMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: "#f6f0ed", display: "block" }}
                   >
                     Logout
                   </Button>
@@ -134,7 +134,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
           </Container>
         </AppBar>
       ) : (
-        <AppBar style={{ background: "#66bb6a" }} position="static">
+        <AppBar style={{ background: "#28536b" }} position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <Diversity1Icon
@@ -148,7 +148,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   mr: 10,
                   display: { xs: "none", md: "flex" },
                   fontWeight: 700,
-                  color: "inherit",
+                  color: "#f6f0ed",
                   textDecoration: "none",
                 }}
               >
@@ -161,7 +161,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleOpenUserMenu}
-                  color="inherit"
+                  color="#f6f0ed"
                 >
                   <MenuIcon />
                 </IconButton>
@@ -208,7 +208,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                   display: { xs: "flex", md: "none" },
                   flexGrow: 1,
                   fontWeight: 700,
-                  color: "inherit",
+                  color: "#f6f0ed",
                   textDecoration: "none",
                 }}
               >
@@ -222,7 +222,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 <Link to="/login">
                   <Button
                     onClick={handleCloseUserMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: "#f6f0ed", display: "block" }}
                   >
                     Login
                   </Button>
@@ -230,7 +230,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 <Link to="/signup">
                   <Button
                     onClick={handleCloseUserMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: "#f6f0ed", display: "block" }}
                   >
                     Signup
                   </Button>

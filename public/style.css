@@ -1,5 +1,6 @@
 body, html {
   height: 100%;
+  background-color: #7ea8be;
 }
 
 a {
@@ -57,7 +58,7 @@ form div {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: #f6f0ed;
 }
 
 .hero-image {
