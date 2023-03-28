@@ -36,12 +36,13 @@ router.post("/:id/userPreference", async (req, res, next) => {
 });
 router.get("/:id/userPreference", async (req, res, next) => {
   try {
-    const info = await UserPreference.findAll({
+    const userPreference = await UserPreference.findAll({
+      include: User,
       where: {
         userId: req.params.id,
       },
     });
-    res.status(201).send(info);
+    res.status(201).send(userPreference);
   } catch (err) {
     console.log("Can not fetch user preferences");
     next(err);
@@ -61,12 +62,13 @@ router.put("/:id/account", async (req, res, next) => {
 });
 router.get("/userinfo/:id", async (req, res, next) => {
   try {
-    const info = await UserInfo.findAll({
+    const userInfo = await UserInfo.findAll({
+      include: User,
       where: {
         userId: req.params.id,
       },
     });
-    res.status(201).send(info);
+    res.status(201).send(userInfo);
   } catch (err) {
     console.log("Can not fetch user information");
     next(err);
@@ -76,7 +78,7 @@ router.get("/userinfo/:id", async (req, res, next) => {
 router.post("/userinfo/", async (req, res, next) => {
   try {
     const info = await UserInfo.create(req.body);
-    info.userId = req.params.id;
+    // info.userId = req.params.id;
     await info.save();
     res.status(201).send(info);
   } catch (err) {
@@ -112,16 +114,16 @@ router.put("/:id/userPreference", async (req, res, next) => {
   }
 });
 
-router.get("/:id/userCompatibility", async (req, res, next) => {
-  try {
-    const usersCompatibility = await User.findByPk({
-      where: { id: req.params.id },
-    });
-    res.json(usersCompatibility);
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get("/:id/userCompatibility", async (req, res, next) => {
+//   try {
+//     const usersCompatibility = await User.findByPk({
+//       where: { id: req.params.id },
+//     });
+//     res.json(usersCompatibility);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 router.delete("/:id/account", async (req, res, next) => {
   try {

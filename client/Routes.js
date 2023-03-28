@@ -16,8 +16,10 @@ import UpdateAccountInfo from "./components/UpdateAccountInfo";
 import Root from "./components/Root";
 import { me } from "./store";
 import userPreference from "./components/userPreference";
-import userCompatibility from "./components/userCompatibility";
 import UpdateUserPreferences from "./components/UpdateUserPreference";
+import AllUsers from "./components/CompatibleUsers/AllUsers";
+import UserDetails from "./components/CompatibleUsers/UserDetails";
+import UserCompatibility from "./components/CompatibleUsers/Compatibility";
 
 /**
  * COMPONENT
@@ -37,13 +39,18 @@ class Routes extends Component {
           <Switch>
             {/* <Redirect to="/home" /> */}
             <Route path="/home" component={Home} />
-            <Route path="/userPreference" component={userPreference} />
-            <Route path="/userInfo" component={UserInfo} />
+            <Route path="/allUsers" component={AllUsers} />
+            <Route path="/userDetails/:id" component={UserDetails} />
+            <Route path="/userPreference/:id" component={userPreference} />
+            <Route path="/userInfo/:id" component={UserInfo} />
             <Route path="/account" component={UpdateAccountInfo} />
             <Route path="/updateUserInfo" component={UpdateUserInfo} />
-            <Route path="/updateUserPreference" component={UpdateUserPreference} />
+            <Route
+              path="/updateUserPreference"
+              component={UpdateUserPreference}
+            />
+            <Route path="/compatibility" component={UserCompatibility} />
             <Redirect to="/home" />
-            <Route exact path="/userInfo" component={UserInfo} />
           </Switch>
         ) : (
           <Switch>

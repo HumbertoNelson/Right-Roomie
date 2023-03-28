@@ -5,32 +5,57 @@ const {
 
 module.exports = router;
 
-router.get("/:id/userPreference/userCompatibility", async (req, res, next) => {
+// /api/compatibility/
+// router.get("/:id/userPreference", async (req, res, next) => {
+//   try {
+//     const userPreference = await UserPreference.findAll({
+//       where: {
+//         userId: req.params.id,
+//       },
+//       include: [User],
+//     });
+//     res.send(userPreference);
+//   } catch (err) {
+//     console.log("Can not get user preferences", err);
+//     next(err);
+//   }
+// });
+
+router.get("/:id/userPreference", async (req, res, next) => {
   try {
-    const userCompatibility = await UserInfo.findAll({
+    const userPreference = await UserPreference.findAll({
       where: {
         userId: req.params.id,
       },
       include: [User],
     });
-    res.send(userCompatibility);
+    res.send(userPreference);
   } catch (err) {
     console.log("Can not get user preferences", err);
     next(err);
   }
 });
 
-// router.get("/:id/userPreference/userCompatibility", async (req, res, next) => {
-//   try {
-//     const getUserInfo = await User.findByPk({
-//       where: {
-//         id: auth.id,
-//       },
-//       include: UserPreference,
-//     });
-//     res.send(getUserInfo);
-//   } catch (err) {
-//     console.log("Can not get user preferences", err);
-//     next(err);
-//   }
-// });
+router.get("/userinfos", async (req, res, next) => {
+  try {
+    const allInfos = await UserInfo.findAll({
+      include: [User],
+    });
+    res.status(201).send(allInfos);
+  } catch (err) {
+    console.log("Can not fetch all users information");
+    next(err);
+  }
+});
+
+router.get("/userPreferences", async (req, res, next) => {
+  try {
+    const allPreferences = await UserPreference.findAll({
+      include: User,
+    });
+    res.status(201).send(allPreferences);
+  } catch (err) {
+    console.log("Can not fetch all users preferences");
+    next(err);
+  }
+});

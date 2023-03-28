@@ -3,23 +3,28 @@ import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToUserInfo } from "../store";
 import { useParams } from "react-router-dom";
-import history from '../history';
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Box from '@mui/material/Box';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
+import history from "../history";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Box from "@mui/material/Box";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import TextField from '@mui/material/TextField';
-import Slider from '@mui/material/Slider';
+import TextField from "@mui/material/TextField";
+import Slider from "@mui/material/Slider";
 
 const UserInfo = (props) => {
   let slider = document.getElementById("myRange");
   var output = document.getElementById("cleanlinessRange");
+  const { id } = useParams();
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(authenticateLogin());
+  // }, []);
 
   const [values, setValues] = useState({
     cleanliness: 0,
@@ -35,8 +40,9 @@ const UserInfo = (props) => {
     overnightGuests: "",
     politicalViews: "",
     religion: "",
-    userId: auth.id,
+    userId: id,
   });
+  console.log("this is auth", id);
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
@@ -48,34 +54,36 @@ const UserInfo = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     dispatch(addToUserInfo(values));
-    history.push('/userPreference')
+    history.push(`/userPreference/${id}`);
   };
 
-  console.log('cleanliness', values)
+  console.log("cleanliness", values);
 
   return (
-    <div className='card'>
-      <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
+    <div className="card">
+      <Card sx={{ width: "75%", position: "center", mt: 5 }} elevation={10}>
         <CardContent>
           <CardHeader
-            title={<Typography variant="h5" component="div">
-            Information About You
-            </Typography>}
-            />       
+            title={
+              <Typography variant="h5" component="div">
+                Information About You
+              </Typography>
+            }
+          />
           <form onSubmit={handleSubmit}>
-          <Box sx={{ width: 300 }}>
-          <Typography id="input-slider" gutterBottom>
-            How clean are you?
-          </Typography>
-            <Slider
-              aria-label="Cleanliness"
-              min={0}
-              max={5}
-              defaultValue={values.cleanliness}
-              valueLabelDisplay="on"
-              onChange={handleChange}
-            />
-          </Box>            
+            <Box sx={{ width: 300 }}>
+              <Typography id="input-slider" gutterBottom>
+                How clean are you?
+              </Typography>
+              <Slider
+                aria-label="Cleanliness"
+                min={0}
+                max={5}
+                defaultValue={values.cleanliness}
+                valueLabelDisplay="on"
+                onChange={handleChange}
+              />
+            </Box>
             {/* <div className="slidecontainer">
               <label htmlFor="cleanliness">
                 <h3 id="cleanlinessRange">
@@ -93,235 +101,241 @@ const UserInfo = (props) => {
                 onChange={handleChange}
               ></input>
             </div> */}
-        <br></br>
-        <div>
-          <label htmlFor="pets">
-            <h3>Do you have pets?</h3>
-          </label>
-          <input
-            onChange={handleChange}
-            type="radio"
-            name="hasPets"
-            value={"Yes"}
-          />
-          Yes
-          <input
-            onChange={handleChange}
-            type="radio"
-            name="hasPets"
-            value={"No"}
-          />
-          No
-        </div>
-        <br></br>
-        <div>
-          <label htmlFor="smoking">
-            <h3>Do you smoke?</h3>
-          </label>
-          <input
-            onChange={handleChange}
-            type="radio"
-            name="smoking"
-            value={"Yes"}
-          />
-          Yes
-          <input
-            onChange={handleChange}
-            type="radio"
-            name="smoking"
-            value={"No"}
-          />
-          No
-        </div>
-        <br></br>
-        <div className="slidecontainer">
-          <label htmlFor="age">
-            <h3>How old are you? {values.age}</h3>
-          </label>
-          <input
-            onChange={handleChange}
-            type="range"
-            name="age"
-            min="18"
-            max="100"
-            className="slider"
-            id="myRange"
-            value={values.age}
-          />
-        </div>
-        <br></br>
-        <div>
-          <label htmlFor="smoking">
-            <h3>Do you participate in drug use?</h3>
-          </label>
-          <input
-            onChange={handleChange}
-            type="radio"
-            name="drugs"
-            value={"Yes"}
-          />
-          Yes
-          <input
-            onChange={handleChange}
-            type="radio"
-            name="drugs"
-            value={"No"}
-          />
-          No
-        </div>
-        <br></br>
-        <div>
-          <label htmlFor="gender">
-            <h3>What gender do you identify with?</h3>
-          </label>
-          <select onChange={handleChange} name="gender" value={values.gender}>
-            <option value={""}> </option>
-            <option value={"Male"}>Male</option>
-            <option value={"Female"}>Female</option>
-            <option value={"Nonbinary"}>Nonbinary</option>
-            <option value={"Transgender"}>Transgender</option>
-            <option value={"Prefer not to respond"}>
-              Prefer not to respond
-            </option>
-          </select>
-        </div>
-        <br></br>
-        <div>
-          <label htmlFor="Sexual Orientation">
-            <h3>Which sexual orientation do you identify with?</h3>
-          </label>
-          <select
-            onChange={handleChange}
-            name="sexualOrientation"
-            value={values.sexualOrientation}
-          >
-            <option value={""}></option>
-            <option value={"Straight"}>Straight</option>
-            <option value={"LGBTQIA+"}>LGBTQIA+</option>
-            <option value={"Prefer not to respond"}>
-              Prefer not to respond
-            </option>
-          </select>
-        </div>
-        <br></br>
-        <div>
-          <label htmlFor="work schedule">
-            <h3>What is your work schedule like?</h3>
-          </label>
-          <select
-            onChange={handleChange}
-            name="workSchedule"
-            value={values.workSchedule}
-          >
-            <option value={""}></option>
-            <option value={"Week Days"}>Weekdays</option>
-            <option value={"Nights"}>Nights</option>
-            <option value={"Weekends"}>Weekends</option>
-          </select>
-        </div>
-        <br></br>
-        <div className="slidecontainer">
-          <label htmlFor="social level">
-            <h3>How social are you? {values.socialLevel}</h3>
-          </label>
-          <input
-            name="socialLevel"
-            type="range"
-            min="0"
-            max="5"
-            value={values.socialLevel}
-            className="slider"
-            id="myRange"
-            onChange={handleChange}
-          ></input>
-        </div>
-        <br></br>
-        <div className="slidecontainer">
-          <label htmlFor="noise level">
-            <h3>
-              Do you listen to loud music or enjoy activities that are noisey?:{" "}
-              {values.noiseLevel}
-            </h3>
-          </label>
-          <input
-            name="noiseLevel"
-            type="range"
-            min="0"
-            max="5"
-            value={values.noiseLevel}
-            className="slider"
-            id="myRange"
-            onChange={handleChange}
-          ></input>
-        </div>
-        <br></br>
-        <div>
-          <label htmlFor="overnight guests">
-            <h3>Are you going to have other people sleep over?</h3>
-          </label>
-          <input
-            onChange={handleChange}
-            type="radio"
-            name="overnightGuests"
-            value={"Yes"}
-          />
-          Yes
-          <input
-            onChange={handleChange}
-            type="radio"
-            name="overnightGuests"
-            value={"No"}
-          />
-          No
-        </div>
-        <br></br>
-        <div>
-          <label htmlFor="Political Views">
-            <h3>How would you identify politically?</h3>
-          </label>
-          <select
-            onChange={handleChange}
-            name="politicalViews"
-            value={values.politicalViews}
-          >
-            <option value={""}></option>
-            <option value={"Democrat"}>Democrat</option>
-            <option value={"Republican"}>Republican</option>
-            <option value={"Neither"}>Neither</option>
-          </select>
-        </div>
-        <br></br>
-        <div>
-          <label htmlFor="Religious Views">
-            <h3>How would you identify religiously?</h3>
-          </label>
-          <select
-            onChange={handleChange}
-            name="religion"
-            value={values.religion}
-          >
-            <option value={""}></option>
-            <option value={"Christian"}>Christian</option>
-            <option value={"Jewish"}>Jewish</option>
-            <option value={"Muslim"}>Muslim</option>
-            <option value={"Buddhist"}>Buddhist</option>
-            <option value={"Hindu"}>Hindu</option>
-            <option value={"Atheist"}>Atheist</option>
-            <option value={"Non-Religious"}>Non-Religious</option>
-            <option value={"Something Not Listed Above"}>
-              Something Not Listed Above
-            </option>
-            <option value={"Prefer not to respond"}>
-              Prefer not to respond
-            </option>
-          </select>
-        </div>
-        <br></br>
-        <CardActions>  
-          <Button variant='contained' color='success' type='submit'>Save Info</Button>
-        </CardActions>
-      </form>
-      </CardContent>
+            <br></br>
+            <div>
+              <label htmlFor="pets">
+                <h3>Do you have pets?</h3>
+              </label>
+              <input
+                onChange={handleChange}
+                type="radio"
+                name="hasPets"
+                value={"Yes"}
+              />
+              Yes
+              <input
+                onChange={handleChange}
+                type="radio"
+                name="hasPets"
+                value={"No"}
+              />
+              No
+            </div>
+            <br></br>
+            <div>
+              <label htmlFor="smoking">
+                <h3>Do you smoke?</h3>
+              </label>
+              <input
+                onChange={handleChange}
+                type="radio"
+                name="smoking"
+                value={"Yes"}
+              />
+              Yes
+              <input
+                onChange={handleChange}
+                type="radio"
+                name="smoking"
+                value={"No"}
+              />
+              No
+            </div>
+            <br></br>
+            <div className="slidecontainer">
+              <label htmlFor="age">
+                <h3>How old are you? {values.age}</h3>
+              </label>
+              <input
+                onChange={handleChange}
+                type="range"
+                name="age"
+                min="18"
+                max="100"
+                className="slider"
+                id="myRange"
+                value={values.age}
+              />
+            </div>
+            <br></br>
+            <div>
+              <label htmlFor="smoking">
+                <h3>Do you participate in drug use?</h3>
+              </label>
+              <input
+                onChange={handleChange}
+                type="radio"
+                name="drugs"
+                value={"Yes"}
+              />
+              Yes
+              <input
+                onChange={handleChange}
+                type="radio"
+                name="drugs"
+                value={"No"}
+              />
+              No
+            </div>
+            <br></br>
+            <div>
+              <label htmlFor="gender">
+                <h3>What gender do you identify with?</h3>
+              </label>
+              <select
+                onChange={handleChange}
+                name="gender"
+                value={values.gender}
+              >
+                <option value={""}> </option>
+                <option value={"Male"}>Male</option>
+                <option value={"Female"}>Female</option>
+                <option value={"Nonbinary"}>Nonbinary</option>
+                <option value={"Transgender"}>Transgender</option>
+                <option value={"Prefer not to respond"}>
+                  Prefer not to respond
+                </option>
+              </select>
+            </div>
+            <br></br>
+            <div>
+              <label htmlFor="Sexual Orientation">
+                <h3>Which sexual orientation do you identify with?</h3>
+              </label>
+              <select
+                onChange={handleChange}
+                name="sexualOrientation"
+                value={values.sexualOrientation}
+              >
+                <option value={""}></option>
+                <option value={"Straight"}>Straight</option>
+                <option value={"LGBTQIA+"}>LGBTQIA+</option>
+                <option value={"Prefer not to respond"}>
+                  Prefer not to respond
+                </option>
+              </select>
+            </div>
+            <br></br>
+            <div>
+              <label htmlFor="work schedule">
+                <h3>What is your work schedule like?</h3>
+              </label>
+              <select
+                onChange={handleChange}
+                name="workSchedule"
+                value={values.workSchedule}
+              >
+                <option value={""}></option>
+                <option value={"Week Days"}>Weekdays</option>
+                <option value={"Nights"}>Nights</option>
+                <option value={"Weekends"}>Weekends</option>
+              </select>
+            </div>
+            <br></br>
+            <div className="slidecontainer">
+              <label htmlFor="social level">
+                <h3>How social are you? {values.socialLevel}</h3>
+              </label>
+              <input
+                name="socialLevel"
+                type="range"
+                min="0"
+                max="5"
+                value={values.socialLevel}
+                className="slider"
+                id="myRange"
+                onChange={handleChange}
+              ></input>
+            </div>
+            <br></br>
+            <div className="slidecontainer">
+              <label htmlFor="noise level">
+                <h3>
+                  Do you listen to loud music or enjoy activities that are
+                  noisey?: {values.noiseLevel}
+                </h3>
+              </label>
+              <input
+                name="noiseLevel"
+                type="range"
+                min="0"
+                max="5"
+                value={values.noiseLevel}
+                className="slider"
+                id="myRange"
+                onChange={handleChange}
+              ></input>
+            </div>
+            <br></br>
+            <div>
+              <label htmlFor="overnight guests">
+                <h3>Are you going to have other people sleep over?</h3>
+              </label>
+              <input
+                onChange={handleChange}
+                type="radio"
+                name="overnightGuests"
+                value={"Yes"}
+              />
+              Yes
+              <input
+                onChange={handleChange}
+                type="radio"
+                name="overnightGuests"
+                value={"No"}
+              />
+              No
+            </div>
+            <br></br>
+            <div>
+              <label htmlFor="Political Views">
+                <h3>How would you identify politically?</h3>
+              </label>
+              <select
+                onChange={handleChange}
+                name="politicalViews"
+                value={values.politicalViews}
+              >
+                <option value={""}></option>
+                <option value={"Democrat"}>Democrat</option>
+                <option value={"Republican"}>Republican</option>
+                <option value={"Neither"}>Neither</option>
+              </select>
+            </div>
+            <br></br>
+            <div>
+              <label htmlFor="Religious Views">
+                <h3>How would you identify religiously?</h3>
+              </label>
+              <select
+                onChange={handleChange}
+                name="religion"
+                value={values.religion}
+              >
+                <option value={""}></option>
+                <option value={"Christian"}>Christian</option>
+                <option value={"Jewish"}>Jewish</option>
+                <option value={"Muslim"}>Muslim</option>
+                <option value={"Buddhist"}>Buddhist</option>
+                <option value={"Hindu"}>Hindu</option>
+                <option value={"Atheist"}>Atheist</option>
+                <option value={"Non-Religious"}>Non-Religious</option>
+                <option value={"Something Not Listed Above"}>
+                  Something Not Listed Above
+                </option>
+                <option value={"Prefer not to respond"}>
+                  Prefer not to respond
+                </option>
+              </select>
+            </div>
+            <br></br>
+            <CardActions>
+              <Button variant="contained" color="success" type="submit">
+                Save Info
+              </Button>
+            </CardActions>
+          </form>
+        </CardContent>
       </Card>
     </div>
   );

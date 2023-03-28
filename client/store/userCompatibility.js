@@ -1,22 +1,28 @@
 import axios from "axios";
 
-export const fetchUserCompatibility = (userCompatibility, id) => {
-  return async (dispatch) => {
-    const response = await axios.post(
-      `/api/users/${id}/userPreference/userCompatibility`,
-      userCompatibility
-    );
-    console.log(response);
-    dispatch({
-      type: "FETCH_USER_COMPATIBILITY",
-      userCompatibility: response.data,
-    });
+export const FETCH_MATCH_INFO = "FETCH_MATCH_INFO";
+
+export const _fetchMatchInfos = (info) => {
+  return {
+    type: FETCH_MATCH_INFO,
+    info,
   };
 };
 
-export default function userCompatibilityReducer(state = {}, action) {
-  if (action.type === "FETCH_USER_COMPATIBILITY") {
-    return action.userCompatibility;
+export const fetchMatchInfos = () => {
+  return async (dispatch) => {
+    const { data: info } = await axios.get(`/api/compatibility/userinfos`);
+    dispatch(_fetchMatchInfos(info));
+  };
+};
+
+const matchInfo = (state = [], action) => {
+  switch (action.type) {
+    case FETCH_MATCH_INFO:
+      return action.info;
+    default:
+      return state;
   }
-  return state;
-}
+};
+
+export default matchInfo;

@@ -34,7 +34,7 @@ export const fetchUserInfo = (id) => {
 export const addToUserInfo = (values) => {
   return async (dispatch) => {
     const { data: newUserInfo } = await axios.post(
-      "/api/users/userinfo",
+      `/api/users/userinfo`,
       values
     );
     dispatch(_addToUserInfo(newUserInfo));
