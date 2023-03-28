@@ -36,6 +36,7 @@ export const authenticateLogin =
       const res = await axios.post(`/auth/${method}`, { username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
+      history.push("/home")
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }
@@ -70,7 +71,7 @@ export const authenticateSignup =
       // dispatch(me())
       dispatch(setAuth(res.data));
       console.log("this is response id", res.data.user.id);
-      history.push(`/userInfo/${res.data.user.id}`);
+      history.push("`/userInfo/${res.data.user.id}`");
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }

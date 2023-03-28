@@ -98,7 +98,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
               />
               <Typography
-                variant="h3"
+                variant="h4"
                 noWrap
                 component="p"
                 sx={{

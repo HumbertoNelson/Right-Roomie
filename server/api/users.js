@@ -125,12 +125,33 @@ router.put("/:id/userPreference", async (req, res, next) => {
 //   }
 // });
 
+// router.delete("/:id/account", async (req, res, next) => {
+//   try {
+//     const destroyUser = await User.findById({
+//       where: { id: req.params.id },
+//     });
+//     res.send(destroyUser.destroy());
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
 router.delete("/:id/account", async (req, res, next) => {
   try {
-    const destroyUser = await User.findById({
+    const destroyUser = await User.findAll({
       where: { id: req.params.id },
     });
-    res.send(destroyUser.destroy());
+    const destroyUserPref = await UserPreference.findAll({
+      where: { id: req.params.id },
+    });
+    const destroyUserInfo = await UserInfo.findAll({
+      where: { id: req.params.id },
+    });
+
+    await User.destroy({ where: { id: req.params.id } }),
+      await UserPreference.destroy({ where: { id: req.params.id } }),
+      await UserInfo.destroy({ where: { id: req.params.id } });
+    res.json({ destroyUser, destroyUserPref, destroyUserInfo });
   } catch (error) {
     next(error);
   }
