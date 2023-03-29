@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AllUsers from "./AllUsers";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 import { useParams } from "react-router-dom";
 import {
@@ -151,14 +151,26 @@ const UserCompatibility = () => {
   //     return finalMatches;
   //   });
 
-  return userPref.length > 0 ? (
+  return matches.length > 0 ? (
     <div>
       <div className="matchHeader">
         <h2>Here Are Your Matches:</h2>
       </div>
       <br></br>
       <AllUsers matches={matches} />
-      <Link to='/home'><Button variant='contained' sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'}, mt: 2, ml: 2 }}>Back to Dashboard</Button></Link>
+      <Link to="/home">
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: "#28536b",
+            ":hover": { backgroundColor: "#688697" },
+            mt: 2,
+            ml: 2,
+          }}
+        >
+          Back to Dashboard
+        </Button>
+      </Link>
     </div>
   ) : (
     <h4>Sorry, there are no matches in your area!</h4>

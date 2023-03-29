@@ -39,7 +39,7 @@ class Routes extends Component {
         {Object.keys(isLoggedIn).length > 0 ? (
           <Switch>
             {/* <Redirect to="/home" /> */}
-            <Route path="/home" component={Home} />
+            <Route exact path="/home" component={Home} />
             <Route path="/allUsers" component={AllUsers} />
             <Route path="/userDetails/:id" component={UserDetails} />
             <Route path="/userPreference/:id" component={userPreference} />
@@ -53,7 +53,6 @@ class Routes extends Component {
             <Route path="/compatibility" component={UserCompatibility} />
             <Route path="/contact" component={ContactForm} />
             <Route path="/" component={Root} />
-            <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
