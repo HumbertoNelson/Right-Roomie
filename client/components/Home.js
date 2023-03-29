@@ -12,11 +12,10 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
 export const Home = (props) => {
-  console.log('props', props)
+  console.log("props", props);
   const { fullName, pic } = props;
 
-  return (
-    fullName && pic ? (
+  return fullName ? (
     <div>
       <Box
         className="testBox"
@@ -67,7 +66,10 @@ export const Home = (props) => {
                     <Link to="/account">
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }}
+                        sx={{
+                          backgroundColor: "#28536b",
+                          ":hover": { backgroundColor: "#688697" },
+                        }}
                       >
                         Profile
                       </Button>
@@ -77,7 +79,10 @@ export const Home = (props) => {
                     <Link to="/updateUserInfo">
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }}
+                        sx={{
+                          backgroundColor: "#28536b",
+                          ":hover": { backgroundColor: "#688697" },
+                        }}
                       >
                         User Info Form
                       </Button>
@@ -87,7 +92,10 @@ export const Home = (props) => {
                     <Link to="/updateUserPreference">
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }}
+                        sx={{
+                          backgroundColor: "#28536b",
+                          ":hover": { backgroundColor: "#688697" },
+                        }}
                       >
                         Roommate Preferences Form
                       </Button>
@@ -123,7 +131,10 @@ export const Home = (props) => {
                     <Link to="/compatibility">
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }}
+                        sx={{
+                          backgroundColor: "#28536b",
+                          ":hover": { backgroundColor: "#688697" },
+                        }}
                       >
                         View your matches
                       </Button>
@@ -135,7 +146,9 @@ export const Home = (props) => {
           </Grid>
         </Grid>
       </div>
-    </div>) : (<span></span>)
+    </div>
+  ) : (
+    <span></span>
   );
 };
 
