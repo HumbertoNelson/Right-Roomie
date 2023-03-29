@@ -73,7 +73,6 @@ export const Home = (props) => {
                       </Button>
                     </Link>
                   </p>
-                  <br></br>
                   <p>
                     <Link to="/updateUserInfo">
                       <Button
@@ -84,7 +83,6 @@ export const Home = (props) => {
                       </Button>
                     </Link>
                   </p>
-                  <br></br>
                   <p>
                     <Link to="/updateUserPreference">
                       <Button
