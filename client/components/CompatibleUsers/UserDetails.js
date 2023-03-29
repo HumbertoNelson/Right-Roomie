@@ -81,11 +81,7 @@ const UserDetails = () => {
             </CardContent>
           </CardActionArea>
           <CardActions sx={{ justifyContent: "center" }}>
-            <Button size="small" color="inherit" variant="contained">
-              <Link className="link" to={"/compatibility"}>
-                Back
-              </Link>
-            </Button>
+            <Link to={"/compatibility"}><Button variant='contained' sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }}>Back</Button></Link>
           </CardActions>
         </Card>
       </Grid>

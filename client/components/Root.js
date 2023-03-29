@@ -74,11 +74,11 @@ export const Root = () => {
                     <Item><h2>Get your matches</h2></Item>
                 </Box>
                 <Box className='testBox' sx={{textAlign: "center", p: 8, backgroundColor: '#bed3de', border: "1px solid black", color: '#f6f0ed'}}><h1>What Right Roomie users are saying:</h1></Box>
-                <div className='card'>
+                <div className='tut-card'>
                     <Card sx={{ width: '50%', backgroundColor: "#f6f0ed", mt: 1 }}>
                         <CardContent>
                             <CardHeader
-                                avatar={<Avatar alt="John" src="john.jpg" />}
+                                avatar={<Avatar alt="John" src="john.jpg" sx={{ width: 50, height: 50 }}/>}
                                 title={<Typography variant="h5" component="div">
                                 John
                                </Typography>}
@@ -95,7 +95,7 @@ export const Root = () => {
                     <Card sx={{ width: '50%', backgroundColor: "#f6f0ed", ml: 1, mt: 1 }}>
                         <CardContent>
                             <CardHeader
-                                avatar={<Avatar alt="maggie" src="maggie.jpg" />}
+                                avatar={<Avatar alt="maggie" src="maggie.jpg" sx={{ width: 50, height: 50 }} />}
                                 title={<Typography variant="h5" component="div">
                                 Maggie
                                </Typography>}
@@ -110,11 +110,11 @@ export const Root = () => {
                         </CardContent>
                     </Card>
                 </div>
-                <div className='card'>
+                <div className='tut-card'>
                     <Card sx={{ width: '50%', backgroundColor: "#f6f0ed", mt: 1 }}>
                         <CardContent>
                             <CardHeader
-                                avatar={<Avatar alt="Lucy" src="lucy.jpg" />}
+                                avatar={<Avatar alt="Lucy" src="lucy.jpg" sx={{ width: 50, height: 50 }} />}
                                 title={<Typography variant="h5" component="div">
                                 Lucy
                                </Typography>}
@@ -131,7 +131,7 @@ export const Root = () => {
                     <Card sx={{ width: '50%', backgroundColor: "#f6f0ed", mt: 1, ml: 1 }}>
                         <CardContent>
                             <CardHeader
-                                avatar={<Avatar alt="tony" src="tony.jpg" />}
+                                avatar={<Avatar alt="tony" src="tony.jpg" sx={{ width: 50, height: 50 }} />}
                                 title={<Typography variant="h5" component="div">
                                 Tony
                                </Typography>}

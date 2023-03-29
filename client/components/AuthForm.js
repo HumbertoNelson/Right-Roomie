@@ -77,7 +77,7 @@ const AuthForm = (props) => {
             <CardActions>
               <Button
                 variant="contained"
-                sx={{ backgroundColor: "#28536b" }}
+                sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }}
                 type="submit"
               >
                 {displayName}

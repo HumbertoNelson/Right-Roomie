@@ -12,7 +12,6 @@ import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import history from "../history";
-import { logout } from "../store";
 
 const UpdateAccountInfo = (props) => {
     const { auth } = useSelector((state) => state);
@@ -50,7 +49,7 @@ const UpdateAccountInfo = (props) => {
       };
 
       const handleDelete = async (id) => {
-        await deleteUser();
+        await deleteUser(id);
         history.push("/");
       };
 
@@ -63,7 +62,7 @@ const UpdateAccountInfo = (props) => {
                 <Card sx={{ width: '75%', position: "center", mt: 5, backgroundColor: "#bed3de" }} elevation={10} >
                     <CardContent>
                         <CardHeader
-                        title={<Typography variant="h5" component="div">
+                        title={<Typography variant="h4" component="div">
                         Update Your Account Information
                         </Typography>}
                         />   
@@ -105,9 +104,9 @@ const UpdateAccountInfo = (props) => {
                                 />
                             </div>
                         <CardActions>  
-                            <Button variant='contained' sx={{ backgroundColor: "#28536b", mr: 2 }} type='submit' >Update</Button>
-                            <Link to='/'><Button onClick={() => {handleDelete()}} variant='contained' sx={{ backgroundColor: "#28536b" }}>Delete Account</Button></Link>
-                            <Link to='/home'><Button variant='contained' sx={{ backgroundColor: "#28536b" }}>Back to Dashboard</Button></Link>
+                            <Button variant='contained' sx={{ backgroundColor: "#28536b", mr: 2, ':hover': {backgroundColor: '#688697'} }} type='submit' >Update</Button>
+                            <Link to='/'><Button onClick={() => {handleDelete()}} variant='contained' sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }}>Delete Account</Button></Link>
+                            <Link to='/home'><Button variant='contained' sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }}>Back to Dashboard</Button></Link>
                         </CardActions>                             
                     </form>
                     </CardContent>

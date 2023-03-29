@@ -57,11 +57,11 @@ const userPreference = () => {
 
   return (
     <div className="card">
-      <Card sx={{ width: "75%", position: "center", mt: 5 }} elevation={10}>
+      <Card sx={{ width: "75%", position: "center", mt: 5, backgroundColor: "#bed3de" }} elevation={10}>
         <CardContent>
           <CardHeader
             title={
-              <Typography variant="h5" component="div">
+              <Typography variant="h4" component="div">
                 Preferences For Your Roommate
               </Typography>
             }
@@ -89,6 +89,7 @@ const userPreference = () => {
                 <h3>Roommate with pets?</h3>
               </label>
               <input
+                className='radio'
                 onChange={onChange}
                 type="radio"
                 name="allowPets"
@@ -96,6 +97,7 @@ const userPreference = () => {
               />
               Yes
               <input
+                className='radio'
                 onChange={onChange}
                 type="radio"
                 name="allowPets"
@@ -109,6 +111,7 @@ const userPreference = () => {
                 <h3>Is a roommate that smokes a dealbreaker?</h3>
               </label>
               <input
+                className='radio'
                 onChange={onChange}
                 type="radio"
                 name="smoking"
@@ -116,6 +119,7 @@ const userPreference = () => {
               />
               Yes
               <input
+                className='radio'
                 onChange={onChange}
                 type="radio"
                 name="smoking"
@@ -156,6 +160,7 @@ const userPreference = () => {
                 <h3>Is recreational drug use okay?</h3>
               </label>
               <input
+                className='radio'
                 onChange={onChange}
                 type="radio"
                 name="drugs"
@@ -163,6 +168,7 @@ const userPreference = () => {
               />
               Yes
               <input
+                className='radio'
                 onChange={onChange}
                 type="radio"
                 name="drugs"
@@ -267,6 +273,7 @@ const userPreference = () => {
                 <h3>Roommate with overnight {`guest(s)`} cool?</h3>
               </label>
               <input
+                className='radio'
                 onChange={onChange}
                 type="radio"
                 name="overnightGuests"
@@ -274,6 +281,7 @@ const userPreference = () => {
               />
               Yes
               <input
+                className='radio'
                 onChange={onChange}
                 type="radio"
                 name="overnightGuests"
@@ -320,11 +328,9 @@ const userPreference = () => {
               </select>
             </div>
             <CardActions>
-              <Link to="/home">
-                <Button variant="contained" color="success">
-                  Save Preferences
-                </Button>
-              </Link>
+              <Button variant="contained" sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }} type="submit">
+                Save Info
+              </Button>
             </CardActions>
           </form>
         </CardContent>

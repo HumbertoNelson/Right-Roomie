@@ -10,7 +10,7 @@ import {
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import UpdateUserInfo from "./components/UpdateUserInfo";
-import UpdateUserPreference from "./components/UpdateUserInfo";
+import UpdateUserPreference from "./components/UpdateUserPreference";
 import UserInfo from "./components/UserInfoForm";
 import UpdateAccountInfo from "./components/UpdateAccountInfo";
 import Root from "./components/Root";
@@ -46,15 +46,10 @@ class Routes extends Component {
             <Route path="/userInfo/:id" component={UserInfo} />
             <Route path="/account" component={UpdateAccountInfo} />
             <Route path="/updateUserInfo" component={UpdateUserInfo} />
-            <Route
-              path="/updateUserPreference"
-              component={UpdateUserPreference}
-            />
+            <Route path="/updateUserPreference" component={UpdateUserPreference} />
             <Route path="/compatibility" component={UserCompatibility} />
-
             <Route path="/contact" component={ContactForm} />
             <Route path="/" component={Root} />
-
             <Redirect to="/home" />
           </Switch>
         ) : (

@@ -53,38 +53,22 @@ const UserInfo = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(addToUserInfo(values));
-    history.push(`/userPreference/${id}`);
+    dispatch(addToUserInfo(values, id));
   };
-
-  console.log("cleanliness", values);
 
   return (
     <div className="card">
-      <Card sx={{ width: "75%", position: "center", mt: 5 }} elevation={10}>
+      <Card sx={{ width: "75%", position: "center", mt: 5, backgroundColor: "#bed3de" }} elevation={10}>
         <CardContent>
           <CardHeader
             title={
-              <Typography variant="h5" component="div">
+              <Typography variant="h4" component="div">
                 Information About You
               </Typography>
             }
           />
           <form onSubmit={handleSubmit}>
-            <Box sx={{ width: 300 }}>
-              <Typography id="input-slider" gutterBottom>
-                How clean are you?
-              </Typography>
-              <Slider
-                aria-label="Cleanliness"
-                min={0}
-                max={5}
-                defaultValue={values.cleanliness}
-                valueLabelDisplay="on"
-                onChange={handleChange}
-              />
-            </Box>
-            {/* <div className="slidecontainer">
+            <div className="slidecontainer">
               <label htmlFor="cleanliness">
                 <h3 id="cleanlinessRange">
                   How clean are you? {values.cleanliness}
@@ -100,13 +84,14 @@ const UserInfo = (props) => {
                 id="myRange"
                 onChange={handleChange}
               ></input>
-            </div> */}
+            </div>
             <br></br>
             <div>
               <label htmlFor="pets">
                 <h3>Do you have pets?</h3>
               </label>
               <input
+                className='radio'              
                 onChange={handleChange}
                 type="radio"
                 name="hasPets"
@@ -114,6 +99,7 @@ const UserInfo = (props) => {
               />
               Yes
               <input
+                className='radio'
                 onChange={handleChange}
                 type="radio"
                 name="hasPets"
@@ -127,6 +113,7 @@ const UserInfo = (props) => {
                 <h3>Do you smoke?</h3>
               </label>
               <input
+                className='radio'
                 onChange={handleChange}
                 type="radio"
                 name="smoking"
@@ -134,6 +121,7 @@ const UserInfo = (props) => {
               />
               Yes
               <input
+                className='radio'
                 onChange={handleChange}
                 type="radio"
                 name="smoking"
@@ -163,6 +151,7 @@ const UserInfo = (props) => {
                 <h3>Do you participate in drug use?</h3>
               </label>
               <input
+                className='radio'
                 onChange={handleChange}
                 type="radio"
                 name="drugs"
@@ -170,6 +159,7 @@ const UserInfo = (props) => {
               />
               Yes
               <input
+                className='radio'
                 onChange={handleChange}
                 type="radio"
                 name="drugs"
@@ -272,6 +262,7 @@ const UserInfo = (props) => {
                 <h3>Are you going to have other people sleep over?</h3>
               </label>
               <input
+                className='radio'
                 onChange={handleChange}
                 type="radio"
                 name="overnightGuests"
@@ -279,6 +270,7 @@ const UserInfo = (props) => {
               />
               Yes
               <input
+                className='radio'
                 onChange={handleChange}
                 type="radio"
                 name="overnightGuests"
@@ -330,7 +322,7 @@ const UserInfo = (props) => {
             </div>
             <br></br>
             <CardActions>
-              <Button variant="contained" color="success" type="submit">
+              <Button variant="contained" sx={{ backgroundColor: "#28536b", ':hover': {backgroundColor: '#688697'} }} type="submit">
                 Save Info
               </Button>
             </CardActions>
