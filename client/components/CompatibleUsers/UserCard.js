@@ -13,7 +13,7 @@ import {
 const UserCard = (props) => {
   const { userInfo } = props;
   return (
-    <Card sx={{ width: "100%", height: "100%" }}>
+    <Card sx={{ width: "100%", height: "100%" }} className="matchCard">
       <CardActionArea>
         <CardMedia
           component="img"
@@ -33,6 +33,11 @@ const UserCard = (props) => {
         <Button size="small" color="primary" variant="outlined">
           <Link className="link" to={`/userDetails/${userInfo.userId}`}>
             Details
+          </Link>
+        </Button>
+        <Button size="small" color="primary" variant="outlined">
+          <Link className="link" to="/contact">
+            Contact
           </Link>
         </Button>
       </CardActions>

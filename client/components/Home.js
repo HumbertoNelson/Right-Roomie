@@ -30,7 +30,7 @@ export const Home = (props) => {
         }}
       >
         <h1>User Dashboard</h1>
-        <h2>Welcome, {fullName}!</h2>
+        <h2 className="dashHeader">Welcome, {fullName}!</h2>
         <Grid container align="center">
           <Grid item xs={12}>
             <Avatar alt={fullName} src={pic} sx={{ width: 250, height: 250 }} />
@@ -71,6 +71,7 @@ export const Home = (props) => {
                       </Button>
                     </Link>
                   </p>
+                  <br></br>
                   <p>
                     <Link to="/updateUserInfo">
                       <Button
@@ -81,6 +82,7 @@ export const Home = (props) => {
                       </Button>
                     </Link>
                   </p>
+                  <br></br>
                   <p>
                     <Link to="/updateUserPreference">
                       <Button
@@ -118,7 +120,7 @@ export const Home = (props) => {
                   component={"span"}
                 >
                   <p>
-                    <Link to="/userCompatibility">
+                    <Link to="/compatibility">
                       <Button
                         variant="contained"
                         sx={{ backgroundColor: "#28536b" }}
