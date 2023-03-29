@@ -162,7 +162,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
               />
               <Typography
-                variant="h6"
+                variant="h4"
                 noWrap
                 component="p"
                 sx={{
@@ -220,7 +220,7 @@ function Navbar({ handleClick, isLoggedIn, id }) {
                 sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
               />
               <Typography
-                variant="h5"
+                variant="h4"
                 noWrap
                 component="a"
                 href=""

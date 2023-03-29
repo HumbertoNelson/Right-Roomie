@@ -51,10 +51,10 @@ const UpdateUserInfo = (props) => {
 
   return (
     <div className='card'>
-      <Card sx={{ width: '75%', position: "center", mt: 5 }} elevation={10} >
+      <Card sx={{ width: '75%', position: "center", mt: 5, backgroundColor: "#bed3de" }} elevation={10} >
         <CardContent>
           <CardHeader
-            title={<Typography variant="h5" component="div">
+            title={<Typography variant="h4" component="div">
             Information About You
             </Typography>}
             />  
@@ -62,7 +62,7 @@ const UpdateUserInfo = (props) => {
           <div className="slidecontainer">
             <label htmlFor="cleanliness">
               <h3 id="cleanlinessRange">
-                How clean are you?: {values.cleanliness}
+                How clean are you? {values.cleanliness}
               </h3>
             </label>
             <input
@@ -82,6 +82,7 @@ const UpdateUserInfo = (props) => {
               <h3>Do you have pets?</h3>
             </label>
             <input
+              className='radio'            
               onChange={handleChange}
               type="radio"
               name="hasPets"
@@ -90,6 +91,7 @@ const UpdateUserInfo = (props) => {
             />
             Yes
             <input
+              className='radio'
               onChange={handleChange}
               type="radio"
               name="hasPets"
@@ -104,6 +106,7 @@ const UpdateUserInfo = (props) => {
               <h3>Do you smoke?</h3>
             </label>
             <input
+              className='radio'
               onChange={handleChange}
               type="radio"
               name="smoking"
@@ -112,6 +115,7 @@ const UpdateUserInfo = (props) => {
             />
             Yes
             <input
+              className='radio'            
               onChange={handleChange}
               type="radio"
               name="smoking"
@@ -123,7 +127,7 @@ const UpdateUserInfo = (props) => {
           <br></br>
           <div className="slidecontainer">
             <label htmlFor="age">
-              <h3>How old are you?: {values.age}</h3>
+              <h3>How old are you? {values.age}</h3>
             </label>
             <input
               onChange={handleChange}
@@ -141,7 +145,8 @@ const UpdateUserInfo = (props) => {
             <label htmlFor="smoking">
               <h3>Do you participate in drug use?</h3>
             </label>
-            <input
+            <input           
+              className='radio'            
               onChange={handleChange}
               type="radio"
               name="drugs"
@@ -150,6 +155,7 @@ const UpdateUserInfo = (props) => {
             />
             Yes
             <input
+              className='radio'            
               onChange={handleChange}
               type="radio"
               name="drugs"
@@ -228,7 +234,7 @@ const UpdateUserInfo = (props) => {
           <div className="slidecontainer">
             <label htmlFor="noise level">
               <h3>
-                Do you listen to loud music or enjoy activities that are noisey?:{" "}
+                Do you listen to loud music or enjoy activities that are noisy?{" "}
                 {values.noiseLevel}
               </h3>
             </label>
@@ -249,6 +255,7 @@ const UpdateUserInfo = (props) => {
               <h3>Are you going to have other people sleep over?</h3>
             </label>
             <input
+              className='radio'            
               onChange={handleChange}
               type="radio"
               name="overnightGuests"
@@ -257,6 +264,7 @@ const UpdateUserInfo = (props) => {
             />
             Yes
             <input
+              className='radio'            
               onChange={handleChange}
               type="radio"
               name="overnightGuests"
@@ -309,8 +317,8 @@ const UpdateUserInfo = (props) => {
           </div>
           <br></br>
           <CardActions>  
-            <Button variant='contained' color='success' type='submit' sx={{mr: 2}}>Update</Button>
-            <Link to='/home'><Button variant='contained' color='success'>Back to Dashboard</Button></Link>
+            <Button variant='contained' type='submit' sx={{ backgroundColor: "#28536b", mr: 2, ':hover': {backgroundColor: '#688697'} }}>Update</Button>
+            <Link to='/home'><Button variant='contained' sx={{ backgroundColor: "#28536b", mr: 2, ':hover': {backgroundColor: '#688697'} }}>Back to Dashboard</Button></Link>
             </CardActions> 
         </form>
         </CardContent>

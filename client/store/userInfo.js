@@ -31,14 +31,15 @@ export const fetchUserInfo = (id) => {
   };
 };
 
-export const addToUserInfo = (values) => {
+export const addToUserInfo = (values, id) => {
+  console.log('id', id)
   return async (dispatch) => {
     const { data: newUserInfo } = await axios.post(
       `/api/users/userinfo`,
       values
     );
     dispatch(_addToUserInfo(newUserInfo));
-    history.push('/userInfo')
+    history.push(`/userPreference/${id}`)
   };
 };
 export const updateUserInfo = (newValues, id) => {

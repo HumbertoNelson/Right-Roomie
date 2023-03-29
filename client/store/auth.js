@@ -71,7 +71,7 @@ export const authenticateSignup =
       // dispatch(me())
       dispatch(setAuth(res.data));
       console.log("this is response id", res.data.user.id);
-      history.push("`/userInfo/${res.data.user.id}`");
+      history.push(`/userInfo/${res.data.user.id}`);
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }
