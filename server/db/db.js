@@ -21,7 +21,7 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-const conn = new Sequelize(
+const db = new Sequelize(
   process.env.DATABASE_URL || "postgres://localhost/dpg-cjt720dhtt0c7397dtpg-a",
   config
 );
