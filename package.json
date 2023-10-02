@@ -1,3 +1,4 @@
+//Take out JWT=felix if needed
 {
   "name": "roomie_app",
   "version": "2.0.0",
@@ -12,7 +13,6 @@
     "start:dev:logger": "LOGGING=true npm run start:dev",
     "start:dev:seed": "SEED=true npm run start:dev",
     "start-server": "JWT=felix nodemon server -e html,js,scss --ignore public --ignore client"
-    //Take out JWT=felix if needed
   },
   "author": "Fullstack Academy of Code",
   "license": "MIT",
